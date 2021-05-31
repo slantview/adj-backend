@@ -5,6 +5,7 @@ import { Redirect, Route, BrowserRouter as Router, Switch } from 'react-router-d
 
 import AddOrganization from 'pages/AddOrganization';
 import AddSite from 'pages/AddSite';
+import AddUser from 'pages/AddUser';
 import UserProvider from 'providers/UserProvider';
 
 import Application from './layout/Application';
@@ -17,7 +18,7 @@ import Users from './pages/Users';
 import NotificationProvider from './providers/NotificationProvider';
 
 import './assets/styles/index.css';
-import AddUser from 'pages/AddUser';
+import SettingsPage from 'pages/SettingsPage';
 
 const pageVariants = {
 	initial: {
@@ -58,7 +59,11 @@ ReactDOM.render(
 
 							<Route exact path="/users"><Users /></Route>
 							<Route exact path="/users/new"><AddUser /></Route>
+							
 							<Route exact path="/games"><Games /></Route>
+
+							<Route exact path="/settings"><SettingsPage /></Route>
+							
 							<Route exact path="/"><Redirect to="/dashboard" /></Route>
 						</Application>
 					</motion.div>

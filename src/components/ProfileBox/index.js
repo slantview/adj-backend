@@ -1,7 +1,8 @@
 import { Menu, Transition } from '@headlessui/react';
 import firebase from 'firebase/app';
 import React, { Fragment, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
 import { UserContext } from '../../providers/UserProvider';
 
 function classNames(...classes) {
@@ -10,6 +11,7 @@ function classNames(...classes) {
 
 const ProfileBox = (props) => {
     const userCtx = useContext(UserContext);
+    const history = useHistory();
 
     const handleSignout = (e) => {
         const auth = firebase.auth();

@@ -1,14 +1,22 @@
 import React from 'react'
+import { useHistory } from 'react-router';
 
 import Breadcrumbs from 'components/Breadcrumbs';
-import Content from 'layout/Content';
 import SitesTable from 'components/SitesTable';
+import Content from 'layout/Content';
 
 const pages = [
     { name: 'Sites', href: '/sites', current: true },
-  ]
+]
 
 const Sites = () => {
+    const history = useHistory();
+
+    const handleClick = (e) => {
+        history.push('/sites/new');
+        e.preventDefault();
+    }
+
     return (
         <>
             <Breadcrumbs pages={pages} />
@@ -18,6 +26,7 @@ const Sites = () => {
                 </div>
                 <div className="mt-4 flex md:mt-0 md:ml-4">
                     <button
+                        onClick={handleClick}
                         type="button"
                         className="mx-2 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-800 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
                     >

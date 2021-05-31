@@ -145,7 +145,7 @@ const UsersTable = (props) => {
 
             <div className="shadow sm:hidden rounded mt-6 mx-2 md:mx-0">
 				<ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
-					{transactions.map((transaction) => (
+					{ transactions.map((transaction) => (
 						<li key={transaction.id}>
 							<Link to={transaction.href} className="block px-4 py-4 bg-white hover:bg-gray-50">
 								<span className="flex items-center space-x-4">

@@ -20,10 +20,10 @@ const navigation = [
         title: 'Users',
         url: '/users'
     },
-    {
-        title: 'Games',
-        url: '/games'
-    }
+    // {
+    //     title: 'Games',
+    //     url: '/games'
+    // }
 ];
 
 const Navigation = () => {

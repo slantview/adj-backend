@@ -1,9 +1,8 @@
+import { CalendarIcon, ClockIcon } from '@heroicons/react/outline';
 import { ChevronRightIcon, OfficeBuildingIcon, SearchIcon } from '@heroicons/react/solid';
-import { ClockIcon, CalendarIcon } from '@heroicons/react/outline';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { date } from 'yup';
 
 const classNames = (...classes) => {
 	return classes.filter(Boolean).join(' ')
@@ -131,7 +130,7 @@ const OrganizationsTable = (props) => {
 									Previous
 								</a>
 							}
-							{ (page*10)+10 < organizationsDisplayData.length &&
+							{ (page*10)+10 > organizationsDisplayData.length &&
 								<a
 									href="#"
 									onClick={pageForward}
@@ -247,7 +246,7 @@ const OrganizationsTable = (props) => {
 								Previous
 							</a>
 						}
-                        { (page*10)+10 < organizationsDisplayData.length &&
+                        { (page*10)+10 > organizationsDisplayData.length &&
 							<a
 								href="#"
 								onClick={pageForward}

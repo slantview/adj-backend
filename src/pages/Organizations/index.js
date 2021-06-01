@@ -22,8 +22,6 @@ const Organizations = () => {
 	const [isLoading, setLoading] = useState(loading);
 	const [organizationsData, setOrganizationsData] = useState([]);
 
-    console.log('data', data);
-
 	const refreshOrganizations = () => {
 		setLoading(true);
 		setOrganizationsData([]);

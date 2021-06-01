@@ -1,5 +1,7 @@
+import { CalendarIcon, ClockIcon } from '@heroicons/react/outline';
 import { ChevronRightIcon, CogIcon, OfficeBuildingIcon, SearchIcon, UploadIcon } from '@heroicons/react/solid';
-import React from 'react';
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const classNames = (...classes) => {
@@ -11,7 +13,7 @@ const transactions = [
 		id: 1,
 		name: 'AllKnighters',
         location: "Los Angeles, CA",
-		href: '/organizations/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
+		href: '/sites/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
 		amount: '0m35s',
 		type: "organizer",
 		status: 'disabled',
@@ -22,7 +24,7 @@ const transactions = [
 		id: 2,
 		name: 'Smash Legion',
         location: "Los Angeles, CA",
-		href: '/organizations/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
+		href: '/sites/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
 		amount: '2m51s',
 		type: "bar",
 		status: 'cancelled',
@@ -33,7 +35,7 @@ const transactions = [
 		id: 3,
 		name: '2G Gaming, Inc.',
         location: "Los Angeles, CA",
-		href: '/organizations/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
+		href: '/sites/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
 		amount: '0m35s',
 		type: "organizer",
 		status: 'enabled',
@@ -44,7 +46,7 @@ const transactions = [
 		id: 4,
 		name: 'Smash Legion',
         location: "Los Angeles, CA",
-		href: '/organizations/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
+		href: '/sites/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
 		amount: '2m30s',
 		type: "organizer",
 		status: 'enabled',
@@ -55,7 +57,7 @@ const transactions = [
 		id: 5,
 		name: '2Legit2Quit',
         location: "Los Angeles, CA",
-		href: '/organizations/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
+		href: '/sites/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
 		amount: '0m35s',
 		type: "organizer",
 		status: 'deleted',
@@ -66,7 +68,7 @@ const transactions = [
 		id: 6,
 		name: 'Incendium',
         location: "Los Angeles, CA",
-		href: '/organizations/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
+		href: '/sites/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
 		amount: '2m30s',
 		type: "organizer",
 		status: 'enabled',
@@ -77,7 +79,7 @@ const transactions = [
 		id: 7,
 		name: 'Smokeys Smoke Shop',
         location: "Los Angeles, CA",
-		href: '/organizations/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
+		href: '/sites/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
 		amount: '2m30s',
 		type: "restaurant",
 		status: 'enabled',
@@ -88,7 +90,7 @@ const transactions = [
 		id: 8,
 		name: 'LAN Center Plus',
         location: "Los Angeles, CA",
-		href: '/organizations/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
+		href: '/sites/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
 		amount: '2m30s',
 		type: "venue",
 		status: 'enabled',
@@ -99,7 +101,7 @@ const transactions = [
 		id: 9,
 		name: 'PepsiCo, Inc',
         location: "Los Angeles, CA",
-		href: '/organizations/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
+		href: '/sites/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
 		amount: '2m30s',
 		type: "advertiser",
 		status: 'enabled',
@@ -110,7 +112,7 @@ const transactions = [
 		id: 10,
 		name: 'Milky Way',
         location: "Los Angeles, CA",
-		href: '/organizations/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
+		href: '/sites/edit/1ec7bd9e-c1fa-11eb-8652-9f18adffb179',
 		amount: '2m30s',
 		type: "organizer",
 		status: 'enabled',
@@ -119,13 +121,61 @@ const transactions = [
 	}
 ]
 const statusStyles = {
-	enabled: 'bg-green-100 text-green-800',
-	disabled: 'bg-yellow-100 text-yellow-800',
+	live: 'bg-green-100 text-green-800',
+	ready: 'bg-green-100 text-green-800',
+	prelive: 'bg-yellow-100 text-yellow-800',
+	accepted:  'bg-green-100 text-green-800',
 	cancelled: 'bg-gray-100 text-gray-800',
     deleted: 'bg-red-100 text-red-800',
+	error: 'bg-red-100 text-red-800',
 }
 
 const SitesTable = (props) => {
+	const {
+		sites
+	} = props;
+
+	const [sitesDisplayData, setSiteDisplayData] = useState([]);
+
+    const [page, setPage] = useState(0);
+	const handlePageChange = (event, page) => {
+		setPage(page);
+	};
+    const [search, setSearch] = useState('');
+
+	const handleSearchChange = (e) => {
+		if (e.target.value === "") {
+			setSearch('');
+            setSiteDisplayData(sites);
+		} else {
+			setSearch(e.target.value);
+			const newData = sites.filter(o => {
+				return o.name.toLowerCase().includes(e.target.value.toLowerCase());
+			})
+			setSiteDisplayData(newData);
+		}
+	};
+
+	const pageBack = (e) => {
+		setPage(page > 0 ? page-1 : 0);
+		e.preventDefault();
+	}
+
+	const pageForward = (e) => {
+		setPage(page*10+10 < sitesDisplayData.length ? page+1 : page);
+		e.preventDefault();
+	}
+
+	useEffect(() => {
+		let active = true;
+		if (active) {
+			setSiteDisplayData(sites);
+		}
+		return () => {
+			active = false;
+		}
+	}, [sites])
+
     return (
         <div className="mb-8 mt-8">
             <div className="mb-6 mx-2 md:mx-0">
@@ -139,37 +189,53 @@ const SitesTable = (props) => {
                         id="email"
                         className="p-4 focus:ring-gray-300 focus:border-gray-300 block w-full pl-10 sm:text-sm border-gray-300 rounded-lg text-xl"
                         placeholder="Search"
+						autoComplete="off"
+						value={search}
+						onChange={handleSearchChange}
                     />
                 </div>
             </div>
 
             <div className="shadow sm:hidden rounded mt-6 mx-2 md:mx-0">
 				<ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
-					{transactions.map((transaction) => (
-						<li key={transaction.id}>
-							<Link to={transaction.href} className="block px-4 py-4 bg-white hover:bg-gray-50">
+					{ sitesDisplayData.slice(page*10, 10).map((site) => (
+						<li key={site.id}>
+							<Link to={"/sites/view/" + site.id} className="block px-4 py-4 bg-white hover:bg-gray-50">
 								<span className="flex items-center space-x-4">
 									<span className="flex-1 flex flex-col truncate">
 										<span className="flex-1 flex">
 											<OfficeBuildingIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
-											<span className="truncate inline-block ml-2 font-bold text-blue-600 text-sm">{transaction.name}</span>
+											<span className="truncate inline-block ml-2 font-bold text-blue-600 text-sm">{site.name}</span>
 										</span>
 										
 										
 										<div className="flex-1 text-sm truncate mt-1 ml-0 pl-0">
-											<div className="">
-												<svg className="h-5 w-5 text-green-500 inline-block" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20 20" fill="currentColor">
-													<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-												</svg>
-												<span className="inline-block ml-2 text-gray-500 font-bold">
-													{ transaction.type === "build" && "Built" }
-													{ transaction.type === "publish"  && "Published" }
+											<div className="mt-1">
+												<span className="inline-block ml-0 text-gray-500 font-bold">
+													<span className={classNames(
+														statusStyles[site.state],
+														'inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold uppercase')}>
+															{site.state}
+													</span>
 												</span>
-												<span className="text-gray-500"> in {transaction.amount}</span>
+												<span className="ml-2 inline-block">
+													{site.domain}
+												</span>
 											</div>
-											<span className="text-gray-600 text-bold inline-block ml-7">
-												<time dateTime={transaction.datetime}>{transaction.date}</time>
+											<div className="mt-2">
+											<span className="text-sm text-gray-800 text-bold inline-block">
+												<CalendarIcon className="w-4 h-4 inline-block mr-1" />
+												<time className="text-gray-400 text-md" dateTime={site.updated_at}>
+													{moment(site.updated_at).format("YYYY-MM-DD")}
+												</time>
 											</span>
+											<span className="ml-4 text-sm text-gray-800 text-bold inline-block">
+												<ClockIcon className="w-4 h-4 inline-block mr-1 text-bold" />
+												<time className="text-gray-400 text-md" dateTime={site.updated_at}>
+													{moment(site.updated_at).format("HH:mm:ss")}
+												</time>
+											</span>
+										</div>
 											
 										</div>
 									</span>
@@ -180,25 +246,30 @@ const SitesTable = (props) => {
 					))}
 				</ul>
 
-              <nav
-                className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200"
-                aria-label="Pagination"
-              >
-                <div className="flex-1 flex justify-between">
-                  <a
-                    href="#"
-                    className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
-                  >
-                    Previous
-                  </a>
-                  <a
-                    href="#"
-                    className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
-                  >
-                    Next
-                  </a>
-                </div>
-              </nav>
+				{ sitesDisplayData.length > 10 &&
+					<nav className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200" aria-label="Pagination">
+						<div className="flex-1 flex justify-between">
+							{ page*10 > 0 &&
+								<a
+									href="#"
+									onClick={pageBack}
+									className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+								>
+									Previous
+								</a>
+							}
+							{ (page*10)+10 > sitesDisplayData.length &&
+								<a
+									href="#"
+									onClick={pageForward}
+									className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+									>
+									Next
+								</a>
+							}
+						</div>
+					</nav>
+				}
             </div>
 
             {/* Activity table (small breakpoint and up) */}
@@ -210,85 +281,101 @@ const SitesTable = (props) => {
                       <thead>
                         <tr>
                           <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Event
+                            Site
                           </th>
 						  <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Type
+                            State
                           </th>
                           <th className="hidden px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:block">
-                            Status
+                            Provisioning State
                           </th>
                           <th className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Date
+                            Last Updated
                           </th>
                         </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200">
-                        { transactions.map((transaction) => (
-							<tr key={transaction.id} className="bg-white">
-								<td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+						{ sitesDisplayData.slice(page*10, 10).map((site) => (
+							<tr key={site.id} className="bg-white">
+								<td className="px-6 py-4 w-1/3 whitespace-nowrap text-sm text-gray-900">
 									<div className="flex flex-col">
 										<div>
-											<a href={transaction.href} className="group inline-flex space-x-2 truncate text-sm">
+											<a href={'/sites/view/' + site.id} className="group inline-flex space-x-2 truncate text-sm">
                                                 <OfficeBuildingIcon 
                                                     className="flex-shrink-0 h-5 w-5 mt-1 text-gray-400 group-hover:text-gray-500"
                                                     aria-hidden="true"
                                                 />
 												<div className="text-gray-500 truncate group-hover:text-gray-900">
-													<h3 className="text-lg font-bold text-blue-600 inline">{transaction.name}</h3>
+													<h3 className="text-lg font-bold text-blue-600 inline">{site.name}</h3>
 												</div>
 											</a>
 										</div>
 										<div className="mt-2">
 											<span className="inline-block">
-												<span className="ml-7">{transaction.location}</span>
+												<span className="ml-0">{site.domain}</span>
 											</span>
 										</div>
 									</div>
 								</td>
 								<td className="px-6 py-4">
-									<span className="text-xs uppercase text-gray-500">{transaction.type}</span>
+									<span className={classNames(
+										statusStyles[site.state],
+										'inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold uppercase')}>
+											{site.state}
+									</span>
 								</td>
 								<td className="px-6 py-8 hidden whitespace-nowrap text-gray-500 md:block"> 
 									<span className={classNames(
-										statusStyles[transaction.status],
-										'inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium capitalize')}>
-											{transaction.status}
+										statusStyles[site.provisioning_state],
+										'inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold uppercase')}>
+											{site.provisioning_state}
 									</span>
 								</td>
 								<td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-									<time dateTime={transaction.datetime}>{transaction.date}</time>
+									<div>
+										<span className="text-sm text-gray-800 text-bold inline-block">
+											<CalendarIcon className="w-4 h-4 inline-block mr-1" />
+											<time className="text-gray-400 text-md" dateTime={site.updated_at}>
+												{moment(site.updated_at).format("YYYY-MM-DD")}
+											</time>
+										</span>
+										<span className="ml-4 text-sm text-gray-800 text-bold inline-block">
+											<ClockIcon className="w-4 h-4 inline-block mr-1 text-bold" />
+											<time className="text-gray-400 text-md" dateTime={site.updated_at}>
+												{moment(site.updated_at).format("HH:mm:ss")}
+											</time>
+										</span>
+									</div>
 								</td>
 							</tr>
                         ))}
                       </tbody>
                     </table>
                     {/* Pagination */}
-                    <nav
-                      className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
-                      aria-label="Pagination"
-                    >
-                      <div className="hidden sm:block">
-                        <p className="text-sm text-gray-700">
-                          Showing <span className="font-medium">1</span> to <span className="font-medium">10</span> of{' '}
-                          <span className="font-medium">20</span> results
-                        </p>
-                      </div>
-                      <div className="flex-1 flex justify-between sm:justify-end">
-                        <a
-                          href="#"
-                          className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                        >
-                          Previous
-                        </a>
-                        <a
-                          href="#"
-                          className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                        >
-                          Next
-                        </a>
-                      </div>
-                    </nav>
+                    { sitesDisplayData.length > 10 &&
+					<nav className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200" aria-label="Pagination">
+						<div className="flex-1 flex justify-between">
+							{ page*10 > 0 &&
+								<a
+									href="#"
+									onClick={pageBack}
+									className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+								>
+									Previous
+								</a>
+							}
+							{ (page*10)+10 > sitesDisplayData.length &&
+								<a
+									href="#"
+									onClick={pageForward}
+									className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+									>
+									Next
+								</a>
+							}
+						</div>
+					</nav>
+				}
                   </div>
                 </div>
               </div>

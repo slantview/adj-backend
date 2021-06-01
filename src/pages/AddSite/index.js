@@ -1,15 +1,59 @@
-import React from 'react';
-
+import { useApolloClient, useMutation } from '@apollo/client';
 import Breadcrumbs from 'components/Breadcrumbs';
 import SiteForm from 'components/SiteForm';
+import { Form, Formik } from 'formik';
 import Content from 'layout/Content';
+import { NotificationContext } from 'providers/NotificationProvider';
+import { CREATE_SITE } from 'queries/sites';
+import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import * as Yup from 'yup';
 
 const pages = [
     { name: 'Sites', href: '/Sites', current: false },
     { name: 'Add Site', href: '/Sites/new', current: true }
 ]
 
-const AddSite = () => {
+const initialData = {
+    name: '',
+    state: 'prelive'
+}
+
+const validationSchema = Yup.object({
+	name: Yup.string().required("Site name is required.")
+});
+
+const AddSite = (props) => {
+
+    const notify = useContext(NotificationContext).notify;
+    const history = useHistory();
+    const client = useApolloClient();
+    const [createSite] = useMutation(CREATE_SITE);
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleSubmit = (values, actions) => {
+        const newSite = {
+            name: values.name,
+            state: values.state,
+        }
+        createSite({ variables: { site: newSite }})
+            .then(result => {
+                const createdSite = result.data.createSite;
+                setSubmitted(true);
+                client.resetStore()
+                    .then(() => {
+                        notify({
+                            type: 'success',
+                            message: "Successfully added site: " + createdSite.name
+                        });
+                        history.push('/sites', { refresh: true });
+                    });
+            })
+            .catch(e => {
+                console.error(e);
+            })
+    };
+
     return (
         <div>
             <Breadcrumbs pages={pages} />
@@ -20,7 +64,25 @@ const AddSite = () => {
             </div>
                 
             <Content>
-                <SiteForm />
+                <Formik
+                    initialValues={initialData}
+                    validationSchema={validationSchema}
+                    onSubmit={handleSubmit}>
+                        {(FormProps) => (
+                            <>
+                                { FormProps.isSubmitting || submitted ? (
+                                    <div>
+                                        <h2>Creating new site...</h2>
+                                        <span className="spinner" />
+                                    </div>
+                                ):(
+                                    <Form id="site-add-form"> 
+                                        <SiteForm {...FormProps} />
+                                    </Form>
+                                )}
+                            </>
+                         )}
+                </Formik>
             </Content>
         </div>
     )

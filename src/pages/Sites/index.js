@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router';
+import { useQuery } from '@apollo/client';
 
 import Breadcrumbs from 'components/Breadcrumbs';
 import SitesTable from 'components/SitesTable';
 import Content from 'layout/Content';
+import { GET_ALL_SITES } from 'queries/sites';
+import Loading from 'components/Loading';
 
 const pages = [
     { name: 'Sites', href: '/sites', current: true },
@@ -16,6 +19,31 @@ const Sites = () => {
         history.push('/sites/new');
         e.preventDefault();
     }
+
+    const { loading, error, data, refetch } = useQuery(
+		GET_ALL_SITES,
+		{ 
+			notifyOnNetworkStatusChange: true 
+		});
+	const [isLoading, setLoading] = useState(loading);
+	const [sitesData, setSitesData] = useState([]);
+
+	const refreshSites = () => {
+		setLoading(true);
+		setSitesData([]);
+		refetch();
+	};
+
+	useEffect(() => {
+		if (!loading) {
+			setLoading(loading);
+			setSitesData(data?.sites);
+		}
+	}, [loading, data]);
+
+	if (loading) {
+		return (<Loading />);
+	}
 
     return (
         <>
@@ -36,7 +64,7 @@ const Sites = () => {
             </div>
 
             <Content>
-                <SitesTable />
+                <SitesTable sites={sitesData} />
             </Content>
         </>
     )

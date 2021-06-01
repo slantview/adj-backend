@@ -1,8 +1,8 @@
 import React from 'react'
 
 import Breadcrumbs from 'components/Breadcrumbs';
-import Content from 'layout/Content';
 import GamesTable from 'components/GamesTable';
+import Content from 'layout/Content';
 
 const pages = [
     { name: 'Games', href: '/sites', current: true },

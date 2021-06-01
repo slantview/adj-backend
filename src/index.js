@@ -6,6 +6,7 @@ import { Redirect, Route, BrowserRouter as Router, Switch } from 'react-router-d
 import AddOrganization from 'pages/AddOrganization';
 import AddSite from 'pages/AddSite';
 import AddUser from 'pages/AddUser';
+import SettingsPage from 'pages/SettingsPage';
 import UserProvider from 'providers/UserProvider';
 
 import Application from './layout/Application';
@@ -18,7 +19,7 @@ import Users from './pages/Users';
 import NotificationProvider from './providers/NotificationProvider';
 
 import './assets/styles/index.css';
-import SettingsPage from 'pages/SettingsPage';
+import BackendProvider from 'providers/BackendProvider';
 
 const pageVariants = {
 	initial: {
@@ -47,26 +48,28 @@ ReactDOM.render(
 					{/* <Route exact path="/recover"><RecoverPage /></Route> */}
 					{/* <Route exact path="/failure"><FailPage /></Route> */}
 					<UserProvider>
-					<motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
-						<Application>
-							<Route exact path="/dashboard"><Dashboard /></Route>
+						<BackendProvider>
+							<motion.div initial="initial" animate="in" exit="out" variants={pageVariants} transition={pageTransition}>
+								<Application>
+									<Route exact path="/dashboard"><Dashboard /></Route>
 
-							<Route exact path="/organizations"><Organizations /></Route>
-							<Route exact path="/organizations/new"><AddOrganization /></Route>
-							
-							<Route exact path="/sites"><Sites /></Route>
-							<Route exact path="/sites/new"><AddSite /></Route>
+									<Route exact path="/organizations"><Organizations /></Route>
+									<Route exact path="/organizations/new"><AddOrganization /></Route>
+									
+									<Route exact path="/sites"><Sites /></Route>
+									<Route exact path="/sites/new"><AddSite /></Route>
 
-							<Route exact path="/users"><Users /></Route>
-							<Route exact path="/users/new"><AddUser /></Route>
-							
-							<Route exact path="/games"><Games /></Route>
+									<Route exact path="/users"><Users /></Route>
+									<Route exact path="/users/new"><AddUser /></Route>
+									
+									<Route exact path="/games"><Games /></Route>
 
-							<Route exact path="/settings"><SettingsPage /></Route>
-							
-							<Route exact path="/"><Redirect to="/dashboard" /></Route>
-						</Application>
-					</motion.div>
+									<Route exact path="/settings"><SettingsPage /></Route>
+									
+									<Route exact path="/"><Redirect to="/dashboard" /></Route>
+								</Application>
+							</motion.div>
+						</BackendProvider>
 					</UserProvider>
 				</Switch>
 			</AnimatePresence>

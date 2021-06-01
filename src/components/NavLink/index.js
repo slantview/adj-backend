@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const NavLink = (props) => {
     const {
@@ -10,8 +10,8 @@ const NavLink = (props) => {
         children
     } = props;
 
-    const baseClasses = "text-white px-3 py-2 text-sm hover:text-gray-300"
-    const activeClasses = baseClasses + " rounded-lg bg-gray-900 font-medium"
+    const baseClasses = "text-gray-200 px-3 py-2 text-sm hover:text-white hover:bg-gray-900 hover:font-bold rounded-lg"
+    const activeClasses = baseClasses + " bg-gray-700 text-white font-medium"
 
     const [navClasses, setNavClasses] = useState(baseClasses)
 
@@ -34,7 +34,6 @@ const NavLink = (props) => {
             <Link
                 onClick={onClick}
                 to={to}
-                alt={alt}
                 className={navClasses}>
                     {children}
             </Link>

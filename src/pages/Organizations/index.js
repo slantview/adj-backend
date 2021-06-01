@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router';
-
+import { useQuery } from '@apollo/client';
 import Breadcrumbs from 'components/Breadcrumbs';
 import OrganizationsTable from 'components/OrganizationsTable';
 import Content from 'layout/Content';
+import Loading from 'components/Loading';
+import { GET_ALL_ORGANIZATIONS } from 'queries/organizations';
 
 const pages = [
     { name: 'Organizations', href: '/organizations', current: true },
@@ -12,6 +14,33 @@ const pages = [
 const Organizations = () => {
     const history = useHistory();
 
+    const { loading, error, data, refetch } = useQuery(
+		GET_ALL_ORGANIZATIONS,
+		{ 
+			notifyOnNetworkStatusChange: true 
+		});
+	const [isLoading, setLoading] = useState(loading);
+	const [organizationsData, setOrganizationsData] = useState([]);
+
+    console.log('data', data);
+
+	const refreshOrganizations = () => {
+		setLoading(true);
+		setOrganizationsData([]);
+		refetch();
+	};
+
+	useEffect(() => {
+		if (!loading) {
+			setLoading(loading);
+			setOrganizationsData(data?.organizations);
+		}
+	}, [loading, data]);
+
+	if (loading) {
+		return (<Loading />);
+	}
+    
     const handleClick = (e) => {
         history.push('/organizations/new');
         e.preventDefault();
@@ -38,7 +67,7 @@ const Organizations = () => {
                 
             <Content>
                
-                <OrganizationsTable />
+                <OrganizationsTable organizations={organizationsData} />
             </Content>
         </>
     )

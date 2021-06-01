@@ -1,7 +1,7 @@
+import UserForm from 'components/UserForm';
 import React from 'react';
 
 import Breadcrumbs from 'components/Breadcrumbs';
-import UserForm from 'components/UserForm';
 import Content from 'layout/Content';
 
 const pages = [

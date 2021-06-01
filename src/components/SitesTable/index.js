@@ -198,7 +198,7 @@ const SitesTable = (props) => {
 
             <div className="shadow sm:hidden rounded mt-6 mx-2 md:mx-0">
 				<ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
-					{ sitesDisplayData.slice(page*10, 10).map((site) => (
+					{ sitesDisplayData?.slice(page*10, 10).map((site) => (
 						<li key={site.id}>
 							<Link to={"/sites/view/" + site.id} className="block px-4 py-4 bg-white hover:bg-gray-50">
 								<span className="flex items-center space-x-4">
@@ -246,10 +246,10 @@ const SitesTable = (props) => {
 					))}
 				</ul>
 
-				{ sitesDisplayData.length > 10 &&
+				{/* { sitesDisplayData?.length > 10 && */}
 					<nav className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200" aria-label="Pagination">
 						<div className="flex-1 flex justify-between">
-							{ page*10 > 0 &&
+							{ page > 0 &&
 								<a
 									href="#"
 									onClick={pageBack}
@@ -258,7 +258,7 @@ const SitesTable = (props) => {
 									Previous
 								</a>
 							}
-							{ (page*10)+10 > sitesDisplayData.length &&
+							{ (page*10)+10 < sitesDisplayData?.length &&
 								<a
 									href="#"
 									onClick={pageForward}
@@ -269,7 +269,7 @@ const SitesTable = (props) => {
 							}
 						</div>
 					</nav>
-				}
+				{/* } */}
             </div>
 
             {/* Activity table (small breakpoint and up) */}
@@ -352,10 +352,10 @@ const SitesTable = (props) => {
                       </tbody>
                     </table>
                     {/* Pagination */}
-                    { sitesDisplayData.length > 10 &&
+                    {/* { sitesDisplayData.length > 10 && */}
 					<nav className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200" aria-label="Pagination">
 						<div className="flex-1 flex justify-between">
-							{ page*10 > 0 &&
+							{ page > 0 &&
 								<a
 									href="#"
 									onClick={pageBack}
@@ -364,7 +364,7 @@ const SitesTable = (props) => {
 									Previous
 								</a>
 							}
-							{ (page*10)+10 > sitesDisplayData.length &&
+							{ (page*10)+10 < sitesDisplayData.length &&
 								<a
 									href="#"
 									onClick={pageForward}
@@ -375,7 +375,7 @@ const SitesTable = (props) => {
 							}
 						</div>
 					</nav>
-				}
+				{/* } */}
                   </div>
                 </div>
               </div>

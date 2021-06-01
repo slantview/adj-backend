@@ -12,13 +12,6 @@ export const GET_ALL_SITES = gql`
             firebase_site
             provisioning_state
             state
-            provisioning_log {
-                id
-                message
-                state
-                started_at
-                ended_at
-            }
             created_at
             updated_at
             deleted_at

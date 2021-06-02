@@ -127,7 +127,7 @@ const statusStyles = {
 
 const UsersTable = (props) => {
     return (
-        <div className="mb-8 mt-8">
+        <div className="mb-4 mt-4">
             <div className="mb-6 mx-2 md:mx-0">
                 <div className="mt-1 relative rounded-md shadow-sm">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-xl">

@@ -84,10 +84,10 @@ const OrganizationsTable = (props) => {
 
             <div className="shadow sm:hidden rounded mt-6 mx-2 md:mx-0">
 				<ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
-					{organizationsDisplayData.slice(page*10, 10).map((org) => (
+					{organizationsDisplayData.slice(page*10, (page*10)+10).map((org) => (
 						<li key={org.id}>
 							<Link to={"/organizations/view/"+org.id} className="block px-4 py-4 bg-white hover:bg-gray-50">
-								<span className="flex items-center space-x-4">
+								<span className="flex items-center ">
 									<span className="flex-1 flex flex-col truncate">
 										<span className="flex-1 flex">
 											<span className="truncate inline-block font-bold text-blue-600 text-lg">{org.name}</span>
@@ -125,7 +125,7 @@ const OrganizationsTable = (props) => {
 								<a
 									href="#"
 									onClick={pageBack}
-									className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+									className="rrelative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
 								>
 									Previous
 								</a>
@@ -134,7 +134,7 @@ const OrganizationsTable = (props) => {
 								<a
 									href="#"
 									onClick={pageForward}
-									className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+									className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
 									>
 									Next
 								</a>
@@ -142,7 +142,6 @@ const OrganizationsTable = (props) => {
 						</div>
 					</nav>
 				}
-              
             </div>
 
             {/* Activity table (small breakpoint and up) */}
@@ -217,8 +216,21 @@ const OrganizationsTable = (props) => {
 									}
 									
 								</td>
-								<td className="px-6 py-4 text-right whitespace-nowrap font-bold text-sm text-gray-500">
-									<time dateTime={org.updated_at}>{moment(org.updated_at).format("YYYY-MM-DD HH:mm:ss")}</time>
+								<td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
+									<div className="flex flex-col">
+										<div className="text-sm inline-block">
+											<time className="text-gray-800 text-md" dateTime={org.updated_at}>
+												{moment(org.updated_at).format("YYYY-MM-DD")}
+											</time>
+											<CalendarIcon className="text-gray-500 w-4 h-4 inline-block ml-2" />
+										</div>
+										<div className="ml-4 text-sm inline-block">
+											<time className="text-gray-800 text-md" dateTime={org.updated_at}>
+												{moment(org.updated_at).format("HH:mm:ss")}
+											</time>
+											<ClockIcon className="text-gray-500 w-4 h-4 inline-block ml-2" />
+										</div>
+									</div>
 								</td>
 							</tr>
                         ))}

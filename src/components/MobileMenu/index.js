@@ -23,10 +23,6 @@ const navigation = [
     {
         title: 'Users',
         url: '/users'
-    },
-    {
-        title: 'Games',
-        url: '/games'
     }
 ];
 

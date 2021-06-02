@@ -177,7 +177,7 @@ const SitesTable = (props) => {
 	}, [sites])
 
     return (
-        <div className="mb-8 mt-8">
+        <div className="mb-4 mt-4">
             <div className="mb-6 mx-2 md:mx-0">
                 <div className="mt-1 relative rounded-md shadow-sm">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-xl">
@@ -198,7 +198,7 @@ const SitesTable = (props) => {
 
             <div className="shadow sm:hidden rounded mt-6 mx-2 md:mx-0">
 				<ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
-					{ sitesDisplayData?.slice(page*10, 10).map((site) => (
+					{ sitesDisplayData?.slice(page*10, (page*10)+10).map((site) => (
 						<li key={site.id}>
 							<Link to={"/sites/view/" + site.id} className="block px-4 py-4 bg-white hover:bg-gray-50">
 								<span className="flex items-center space-x-4">
@@ -247,13 +247,14 @@ const SitesTable = (props) => {
 				</ul>
 
 				{/* { sitesDisplayData?.length > 10 && */}
+					
 					<nav className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200" aria-label="Pagination">
 						<div className="flex-1 flex justify-between">
 							{ page > 0 &&
 								<a
 									href="#"
 									onClick={pageBack}
-									className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+									className="rrelative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
 								>
 									Previous
 								</a>
@@ -262,7 +263,7 @@ const SitesTable = (props) => {
 								<a
 									href="#"
 									onClick={pageForward}
-									className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+									className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
 									>
 									Next
 								</a>
@@ -284,6 +285,9 @@ const SitesTable = (props) => {
                             Site
                           </th>
 						  <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            ID
+                          </th>
+						  <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             State
                           </th>
                           <th className="hidden px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:block">
@@ -295,9 +299,9 @@ const SitesTable = (props) => {
                         </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200">
-						{ sitesDisplayData.slice(page*10, 10).map((site) => (
+						{ sitesDisplayData.slice(page*10, (page*10)+10).map((site) => (
 							<tr key={site.id} className="bg-white">
-								<td className="px-6 py-4 w-1/3 whitespace-nowrap text-sm text-gray-900">
+								<td className="px-6 py-4  whitespace-nowrap text-sm text-gray-900">
 									<div className="flex flex-col">
 										<div>
 											<a href={'/sites/view/' + site.id} className="group inline-flex space-x-2 truncate text-sm">
@@ -317,6 +321,9 @@ const SitesTable = (props) => {
 										</div>
 									</div>
 								</td>
+								<td className="px-6 py-4 text-gray-400 text-sm">
+									{site.id}
+								</td>
 								<td className="px-6 py-4">
 									<span className={classNames(
 										statusStyles[site.state],
@@ -332,19 +339,19 @@ const SitesTable = (props) => {
 									</span>
 								</td>
 								<td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-									<div>
-										<span className="text-sm text-gray-800 text-bold inline-block">
-											<CalendarIcon className="w-4 h-4 inline-block mr-1" />
-											<time className="text-gray-400 text-md" dateTime={site.updated_at}>
+									<div className="flex flex-col">
+										<div className="text-sm inline-block">
+											<time className="text-gray-800 text-md" dateTime={site.updated_at}>
 												{moment(site.updated_at).format("YYYY-MM-DD")}
 											</time>
-										</span>
-										<span className="ml-4 text-sm text-gray-800 text-bold inline-block">
-											<ClockIcon className="w-4 h-4 inline-block mr-1 text-bold" />
-											<time className="text-gray-400 text-md" dateTime={site.updated_at}>
+											<CalendarIcon className="text-gray-500 w-4 h-4 inline-block ml-2" />
+										</div>
+										<div className="ml-4 text-sm inline-block">
+											<time className="text-gray-800 text-md" dateTime={site.updated_at}>
 												{moment(site.updated_at).format("HH:mm:ss")}
 											</time>
-										</span>
+											<ClockIcon className="text-gray-500 w-4 h-4 inline-block ml-2" />
+										</div>
 									</div>
 								</td>
 							</tr>
@@ -353,8 +360,16 @@ const SitesTable = (props) => {
                     </table>
                     {/* Pagination */}
                     {/* { sitesDisplayData.length > 10 && */}
-					<nav className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200" aria-label="Pagination">
-						<div className="flex-1 flex justify-between">
+					
+					<nav className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6" aria-label="Pagination">
+						<div className="hidden sm:block">
+							<p className="text-sm text-gray-700">
+							Showing <span className="font-medium">{Math.min(sitesDisplayData.length, page*10+1)}</span>&nbsp; 
+							to <span className="font-medium">{Math.min(sitesDisplayData.length, (page*10+10))}</span> of{' '}
+							<span className="font-medium">{sitesDisplayData.length}</span> results
+							</p>
+						</div>
+						<div className="flex-1 flex justify-between sm:justify-end">
 							{ page > 0 &&
 								<a
 									href="#"

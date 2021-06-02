@@ -121,7 +121,7 @@ const OrganizationsTable = (props) => {
 				{ organizationsDisplayData.length > 10 &&
 					<nav className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200" aria-label="Pagination">
 						<div className="flex-1 flex justify-between">
-							{ page*10 > 0 &&
+							{ page*10 > 0 ? (
 								<a
 									href="#"
 									onClick={pageBack}
@@ -129,8 +129,10 @@ const OrganizationsTable = (props) => {
 								>
 									Previous
 								</a>
-							}
-							{ (page*10)+10 > organizationsDisplayData.length &&
+							) : (
+								<span>&nbsp;</span>
+							)}
+							{ (page*10)+10 > organizationsDisplayData.length ? (
 								<a
 									href="#"
 									onClick={pageForward}
@@ -138,7 +140,9 @@ const OrganizationsTable = (props) => {
 									>
 									Next
 								</a>
-							}
+							) : (
+								<span>&nbsp;</span>
+							)}
 						</div>
 					</nav>
 				}

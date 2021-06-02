@@ -223,20 +223,19 @@ const SitesTable = (props) => {
 												</span>
 											</div>
 											<div className="mt-2">
-											<span className="text-sm text-gray-800 text-bold inline-block">
-												<CalendarIcon className="w-4 h-4 inline-block mr-1" />
-												<time className="text-gray-400 text-md" dateTime={site.updated_at}>
-													{moment(site.updated_at).format("YYYY-MM-DD")}
-												</time>
-											</span>
-											<span className="ml-4 text-sm text-gray-800 text-bold inline-block">
-												<ClockIcon className="w-4 h-4 inline-block mr-1 text-bold" />
-												<time className="text-gray-400 text-md" dateTime={site.updated_at}>
-													{moment(site.updated_at).format("HH:mm:ss")}
-												</time>
-											</span>
-										</div>
-											
+												<span className="text-sm text-gray-800 text-bold inline-block">
+													<CalendarIcon className="w-4 h-4 inline-block mr-1" />
+													<time className="text-gray-400 text-md" dateTime={site.updated_at}>
+														{moment(site.updated_at).format("YYYY-MM-DD")}
+													</time>
+												</span>
+												<span className="ml-4 text-sm text-gray-800 text-bold inline-block">
+													<ClockIcon className="w-4 h-4 inline-block mr-1 text-bold" />
+													<time className="text-gray-400 text-md" dateTime={site.updated_at}>
+														{moment(site.updated_at).format("HH:mm:ss")}
+													</time>
+												</span>
+											</div>
 										</div>
 									</span>
 									<ChevronRightIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -250,7 +249,7 @@ const SitesTable = (props) => {
 					
 					<nav className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200" aria-label="Pagination">
 						<div className="flex-1 flex justify-between">
-							{ page > 0 &&
+							{ page > 0 ? (
 								<a
 									href="#"
 									onClick={pageBack}
@@ -258,8 +257,10 @@ const SitesTable = (props) => {
 								>
 									Previous
 								</a>
-							}
-							{ (page*10)+10 < sitesDisplayData?.length &&
+							) : (
+								<span>&nbsp;</span>
+							)}
+							{ (page*10)+10 < sitesDisplayData?.length ? (
 								<a
 									href="#"
 									onClick={pageForward}
@@ -267,7 +268,9 @@ const SitesTable = (props) => {
 									>
 									Next
 								</a>
-							}
+							) : (
+								<span>&nbsp;</span>
+							)}
 						</div>
 					</nav>
 				{/* } */}

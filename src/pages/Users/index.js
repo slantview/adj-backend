@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 
 import Breadcrumbs from 'components/Breadcrumbs';
 import UsersTable from 'components/UsersTable';
 import Content from 'layout/Content';
+import { GET_ALL_USERS } from 'queries/users';
+import Loading from 'components/Loading';
+import { useQuery } from '@apollo/client';
 
 const pages = [
     { name: 'Users', href: '/sites', current: true },
@@ -17,6 +20,31 @@ const Users = (props) => {
         history.push('/users/new');
         e.preventDefault();
     }
+
+    const { loading, error, data, refetch } = useQuery(
+		GET_ALL_USERS,
+		{ 
+			notifyOnNetworkStatusChange: true 
+		});
+	const [isLoading, setLoading] = useState(loading);
+	const [usersData, setUsersData] = useState([]);
+
+	const refreshUsers = () => {
+		setLoading(true);
+		setUsersData([]);
+		refetch();
+	};
+
+	useEffect(() => {
+		if (!loading) {
+			setLoading(loading);
+			setUsersData(data?.users);
+		}
+	}, [loading, data]);
+
+	if (loading) {
+		return (<Loading />);
+	}
 
     return (
         <>
@@ -36,7 +64,7 @@ const Users = (props) => {
                 </div>
             </div>
             <Content>
-                <UsersTable />
+                <UsersTable users={usersData} />
             </Content>
         </>
     )

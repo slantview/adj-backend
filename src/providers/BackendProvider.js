@@ -1,7 +1,9 @@
 import { ApolloProvider } from "@apollo/client";
-import Loading from "components/Loading";
 import moment from "moment-timezone";
 import React, { useContext, useEffect, useState } from "react";
+
+import Loading from "components/Loading";
+
 import { getClient } from "../utils/graphql";
 import { UserContext } from './UserProvider';
 

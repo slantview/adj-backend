@@ -2,8 +2,9 @@ import { RadioGroup } from '@headlessui/react';
 import { PlusIcon } from '@heroicons/react/solid';
 import { Field } from 'formik';
 import React, { useState } from 'react';
-import UserSelector from 'components/UI/UserSelector';
+
 import OrganizationSelector from 'components/UI/OrganizationSelector';
+import UserSelector from 'components/UI/UserSelector';
 
 const states = [
     { name: 'Pre-Live', value: "prelive", description: 'The site has not been published yet.' },
@@ -115,6 +116,7 @@ const SiteForm = (props) => {
 
                 <div className="space-y-6 mt-8">
                     <OrganizationSelector 
+                        name="organization_id"
                         handleSubmit={handleSubmit}
                         setFieldValue={setFieldValue}
                     />

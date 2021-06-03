@@ -168,7 +168,6 @@ const OrganizationForm = (props) => {
 				onSubmit={handleSubmit}>
 					{(FormProps => (
 						<Form onSubmit={FormProps.handleSubmit}>
-							{ console.log(FormProps.errors) }
 							{ currentStep === 0 && 
 								<Step1 {...FormProps} />
 							}

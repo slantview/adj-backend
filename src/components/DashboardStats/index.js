@@ -20,7 +20,7 @@ const DashboardStats = (props) => {
 
 	useEffect(() => {
 		if (!loading) {
-			const ds = data.dashboardStats;
+			const ds = data?.dashboardStats;
 			const orgChange = ((( ds.organization_count_today / ds.organization_count_seven_days )-1) *100).toFixed(0);
 			const siteChange = ((( ds.site_count_today/ ds.site_count_seven_days )-1) *100).toFixed(0);
 			const userChange = ((( ds.user_count_today / ds.user_count_seven_days )-1) *100).toFixed(0);

@@ -1,13 +1,14 @@
 import { useApolloClient, useMutation } from '@apollo/client';
-import Breadcrumbs from 'components/Breadcrumbs';
-import SiteForm from 'components/SiteForm';
 import { Form, Formik } from 'formik';
-import Content from 'layout/Content';
-import { NotificationContext } from 'providers/NotificationProvider';
-import { CREATE_SITE } from 'queries/sites';
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
+
+import Breadcrumbs from 'components/Breadcrumbs';
+import SiteForm from 'components/SiteForm';
+import Content from 'layout/Content';
+import { NotificationContext } from 'providers/NotificationProvider';
+import { CREATE_SITE } from 'queries/sites';
 
 const pages = [
     { name: 'Sites', href: '/Sites', current: false },
@@ -16,7 +17,9 @@ const pages = [
 
 const initialData = {
     name: '',
-    state: 'live'
+    state: 'live',
+    organization: '',
+    owners: []
 }
 
 const validationSchema = Yup.object({
@@ -36,6 +39,8 @@ const AddSite = (props) => {
         const newSite = {
             name: values.name,
             state: values.state,
+            owners: values.owners.map(o => o.id),
+            organization_id: values.organization_id
         }
         createSite({ variables: { site: newSite }})
             .then(result => {

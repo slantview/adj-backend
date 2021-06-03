@@ -1,11 +1,12 @@
-import { RadioGroup } from '@headlessui/react';
-import { PlusIcon } from '@heroicons/react/solid';
 import { useQuery } from '@apollo/client';
-import React, { useState, Fragment, useEffect } from 'react';
-import { CheckIcon } from '@heroicons/react/outline';
-import { CheckCircleIcon, MinusCircleIcon, SelectorIcon, UserCircleIcon } from '@heroicons/react/solid';
+import { RadioGroup } from '@headlessui/react';
 import { Listbox, Transition } from '@headlessui/react'
+import { CheckIcon } from '@heroicons/react/outline';
+import { PlusIcon } from '@heroicons/react/solid';
+import { CheckCircleIcon, MinusCircleIcon, SelectorIcon, UserCircleIcon } from '@heroicons/react/solid';
 import _ from 'lodash';
+import React, { Fragment, useEffect, useState } from 'react';
+
 import { GET_ALL_ORGANIZATIONS } from 'queries/organizations';
 
 function classNames(...classes) {
@@ -16,7 +17,7 @@ const selectOrg = {name: "Select Organization", id: 0};
 
 export const OrganizationSelector = (props) => {
     const {
-        handleSubmit,
+        name,
         setFieldValue
     } = props;
 
@@ -33,6 +34,10 @@ export const OrganizationSelector = (props) => {
     const [organizations, setOrganizations] = useState([]);
     const [selected, setSelected] = useState(selectOrg);
 
+    const handleChange = (e) => {
+        setSelected(e);
+        setFieldValue(name, e.id)
+    }
     return (
         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
             <label htmlFor="street_address" className="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
@@ -49,7 +54,7 @@ export const OrganizationSelector = (props) => {
                 </p>
                 <div className="flex">
                     <div className="flex-grow mt-2">
-                        <Listbox value={selected.name} onChange={setSelected}>
+                        <Listbox value={selected.name} onChange={handleChange}>
                             {({ open }) => (
                                 <>
                                     <div className="mt-1 relative">

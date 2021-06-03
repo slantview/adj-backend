@@ -24,8 +24,9 @@ export const Step4 = (props) => {
     return (
         <div className="space-y-6 mt-8">
             <UserSelector 
-                 handleSubmit={handleSubmit}
-                 setFieldValue={setFieldValue}
+                name="owners"
+                handleSubmit={handleSubmit}
+                setFieldValue={setFieldValue}
             />
         </div>
     )

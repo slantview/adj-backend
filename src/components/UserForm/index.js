@@ -58,7 +58,7 @@ const UserForm = (props) => {
                             name="first_name"
                             id="first_name"
                             className={
-                                "block w-full shadow-sm focus:ring-blue-1000 focus:border-blue-1000 sm:text-sm border-gray-300 rounded-md"
+                                "block w-full shadow-sm focus:ring-blue-1000 focus:border-blue-1000 sm:text-sm border-gray-300 rounded-md "
                                 + (errors.first_name ? errorClasses : "")}
                         />
                         <p className="mt-2 text-sm text-red-600" id="email-error">
@@ -76,8 +76,8 @@ const UserForm = (props) => {
                             name="last_name"
                             id="last_name"
                             className={
-                                "block w-full shadow-sm focus:ring-blue-1000 focus:border-blue-1000 sm:text-sm border-gray-300 rounded-md"
-                                +  (errors.last_name ? errorClasses : "")}
+                                "block w-full shadow-sm focus:ring-blue-1000 focus:border-blue-1000 sm:text-sm border-gray-300 rounded-md "
+                                + (errors.last_name ? errorClasses : "")}
                         />
                         <p className="mt-2 text-sm text-red-600" id="email-error">
                             {errors.last_name}
@@ -94,8 +94,8 @@ const UserForm = (props) => {
                             name="email"
                             id="emaail"
                             className={
-                                "block w-full shadow-sm focus:ring-blue-1000 focus:border-blue-1000 sm:text-sm border-gray-300 rounded-md"
-                                +  (errors.email ? errorClasses : "")}
+                                "block w-full shadow-sm focus:ring-blue-1000 focus:border-blue-1000 sm:text-sm border-gray-300 rounded-md "
+                                + (errors.email ? errorClasses : "")}
                         />
                         <p className="mt-2 text-sm text-red-600" id="email-error">
                             {errors.email}

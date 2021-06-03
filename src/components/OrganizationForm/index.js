@@ -10,6 +10,7 @@ import { CREATE_ORGANIZATION } from 'queries/organizations';
 import { useApolloClient, useMutation } from '@apollo/client';
 import { NotificationContext } from 'providers/NotificationProvider';
 import { useHistory } from 'react-router-dom';
+import _ from 'lodash';
 
 const steps = [
   { id: '01', href: '#', name: 'Basic Info', status: 'current' },
@@ -62,8 +63,11 @@ const OrganizationForm = (props) => {
 			twitch: values.twitch,
 			youtube: values.youtube,
 			timezone: "America/Los_Angeles",
-			owners: values.owners.map(o => o.id)
+			owners: values.owners.map(o => o.id),
+			logo: _.first(values.logo)
         };
+
+		console.log('newOrganization', newOrganization);
 
         createOrganization({ variables: { organization: newOrganization }})
             .then(result => {
@@ -144,7 +148,7 @@ const OrganizationForm = (props) => {
 					name: '',
 					about: '',
 					email: '',
-					logo: '',
+					logo: [],
 					address_line_1: '',
 					address_line_2: '',
 					city: '',

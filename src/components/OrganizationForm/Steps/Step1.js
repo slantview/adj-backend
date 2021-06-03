@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ImageUpload from 'components/ImageUpload';
 import { Field } from 'formik';
 import Select from 'components/UI/Select';
+import timezones from 'components/OrganizationForm/timezones.json';
+import _ from 'lodash';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -48,21 +50,15 @@ const Step1 = (props) => {
                 </div>
             </div>
 
-            <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
-                <label htmlFor="street_address" className="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
+            <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:border-t sm:items-start sm:border-gray-200 sm:pt-5">
+                <label htmlFor="timezone" className="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
                     Timezone
                 </label>
                 <div className="mt-1 sm:mt-0 sm:col-span-2">
                     <Select
                         name="timezone"
-                        items={[
-                            {
-                                id: "1",
-                                name: "America/Los_Angeles",
-                                value: "America/Los_Angeles"
-                            }
-                        ]}
-                        defaultValue={1}
+                        items={_.sortBy(timezones, 'name')}
+                        defaultValue={"America/Los_Angeles"}
                     />
                 </div>
             </div>

@@ -1,0 +1,1393 @@
+[{
+		"name": "Greenwich Mean Time - Abidjan",
+		"value": "Africa/Abidjan"
+	},
+	{
+		"name": "Greenwich Mean Time - Accra",
+		"value": "Africa/Accra"
+	},
+	{
+		"name": "Central European Standard Time - Algiers",
+		"value": "Africa/Algiers"
+	},
+	{
+		"name": "Greenwich Mean Time - Bissau",
+		"value": "Africa/Bissau"
+	},
+	{
+		"name": "Eastern European Standard Time - Cairo",
+		"value": "Africa/Cairo"
+	},
+	{
+		"name": "Morocco Time",
+		"value": "Africa/Casablanca"
+	},
+	{
+		"name": "Central European Time - Ceuta",
+		"value": "Africa/Ceuta"
+	},
+	{
+		"name": "Western Sahara Time",
+		"value": "Africa/El_Aaiun"
+	},
+	{
+		"name": "South Africa Standard Time",
+		"value": "Africa/Johannesburg"
+	},
+	{
+		"name": "Central Africa Time - Juba",
+		"value": "Africa/Juba"
+	},
+	{
+		"name": "Central Africa Time - Khartoum",
+		"value": "Africa/Khartoum"
+	},
+	{
+		"name": "West Africa Standard Time - Lagos",
+		"value": "Africa/Lagos"
+	},
+	{
+		"name": "Central Africa Time - Maputo",
+		"value": "Africa/Maputo"
+	},
+	{
+		"name": "Greenwich Mean Time - Monrovia",
+		"value": "Africa/Monrovia"
+	},
+	{
+		"name": "East Africa Time",
+		"value": "Africa/Nairobi"
+	},
+	{
+		"name": "West Africa Standard Time - Ndjamena",
+		"value": "Africa/Ndjamena"
+	},
+	{
+		"name": "Greenwich Mean Time - São Tomé",
+		"value": "Africa/Sao_Tome"
+	},
+	{
+		"name": "Eastern European Standard Time - Tripoli",
+		"value": "Africa/Tripoli"
+	},
+	{
+		"name": "Central European Standard Time - Tunis",
+		"value": "Africa/Tunis"
+	},
+	{
+		"name": "Central Africa Time - Windhoek",
+		"value": "Africa/Windhoek"
+	},
+	{
+		"name": "Hawaii-Aleutian Time, (Adak)",
+		"value": "America/Adak"
+	},
+	{
+		"name": "Alaska Time - Anchorage",
+		"value": "America/Anchorage"
+	},
+	{
+		"name": "Brasilia Standard Time - Araguaina",
+		"value": "America/Araguaina"
+	},
+	{
+		"name": "Argentina Standard Time - Buenos Aires",
+		"value": "America/Argentina/Buenos_Aires"
+	},
+	{
+		"name": "Argentina Standard Time - Catamarca",
+		"value": "America/Argentina/Catamarca"
+	},
+	{
+		"name": "Argentina Standard Time - Cordoba",
+		"value": "America/Argentina/Cordoba"
+	},
+	{
+		"name": "Argentina Standard Time - Jujuy",
+		"value": "America/Argentina/Jujuy"
+	},
+	{
+		"name": "Argentina Standard Time - La Rioja",
+		"value": "America/Argentina/La_Rioja"
+	},
+	{
+		"name": "Argentina Standard Time - Mendoza",
+		"value": "America/Argentina/Mendoza"
+	},
+	{
+		"name": "Argentina Standard Time - Rio Gallegos",
+		"value": "America/Argentina/Rio_Gallegos"
+	},
+	{
+		"name": "Argentina Standard Time - Salta",
+		"value": "America/Argentina/Salta"
+	},
+	{
+		"name": "Argentina Standard Time - San Juan",
+		"value": "America/Argentina/San_Juan"
+	},
+	{
+		"name": "Argentina Standard Time - San Luis",
+		"value": "America/Argentina/San_Luis"
+	},
+	{
+		"name": "Argentina Standard Time - Tucuman",
+		"value": "America/Argentina/Tucuman"
+	},
+	{
+		"name": "Argentina Standard Time - Ushuaia",
+		"value": "America/Argentina/Ushuaia"
+	},
+	{
+		"name": "Paraguay Time",
+		"value": "America/Asuncion"
+	},
+	{
+		"name": "Eastern Standard Time - Atikokan",
+		"value": "America/Atikokan"
+	},
+	{
+		"name": "Brasilia Standard Time - Bahia",
+		"value": "America/Bahia"
+	},
+	{
+		"name": "Central Time - Bahia Banderas",
+		"value": "America/Bahia_Banderas"
+	},
+	{
+		"name": "Atlantic Standard Time - Barbados",
+		"value": "America/Barbados"
+	},
+	{
+		"name": "Brasilia Standard Time - Belem",
+		"value": "America/Belem"
+	},
+	{
+		"name": "Central Standard Time - Belize",
+		"value": "America/Belize"
+	},
+	{
+		"name": "Atlantic Standard Time - Blanc-Sablon",
+		"value": "America/Blanc-Sablon"
+	},
+	{
+		"name": "Amazon Standard Time - Boa Vista",
+		"value": "America/Boa_Vista"
+	},
+	{
+		"name": "Colombia Standard Time",
+		"value": "America/Bogota"
+	},
+	{
+		"name": "Mountain Time - Boise",
+		"value": "America/Boise"
+	},
+	{
+		"name": "Mountain Time - Cambridge Bay",
+		"value": "America/Cambridge_Bay"
+	},
+	{
+		"name": "Amazon Standard Time - Campo Grande",
+		"value": "America/Campo_Grande"
+	},
+	{
+		"name": "Eastern Standard Time - Cancun",
+		"value": "America/Cancun"
+	},
+	{
+		"name": "Venezuela Time",
+		"value": "America/Caracas"
+	},
+	{
+		"name": "French Guiana Time",
+		"value": "America/Cayenne"
+	},
+	{
+		"name": "Central Time - Chicago",
+		"value": "America/Chicago"
+	},
+	{
+		"name": "Mexican Pacific Time - Chihuahua",
+		"value": "America/Chihuahua"
+	},
+	{
+		"name": "Central Standard Time - Costa Rica",
+		"value": "America/Costa_Rica"
+	},
+	{
+		"name": "Mountain Standard Time - Creston",
+		"value": "America/Creston"
+	},
+	{
+		"name": "Amazon Standard Time - Cuiaba",
+		"value": "America/Cuiaba"
+	},
+	{
+		"name": "Atlantic Standard Time - Curaçao",
+		"value": "America/Curacao"
+	},
+	{
+		"name": "Greenwich Mean Time - Danmarkshavn",
+		"value": "America/Danmarkshavn"
+	},
+	{
+		"name": "Mountain Time, (Dawson)",
+		"value": "America/Dawson"
+	},
+	{
+		"name": "Mountain Standard Time - Dawson Creek",
+		"value": "America/Dawson_Creek"
+	},
+	{
+		"name": "Mountain Time - Denver",
+		"value": "America/Denver"
+	},
+	{
+		"name": "Eastern Time - Detroit",
+		"value": "America/Detroit"
+	},
+	{
+		"name": "Mountain Time - Edmonton",
+		"value": "America/Edmonton"
+	},
+	{
+		"name": "Acre Standard Time - Eirunepe",
+		"value": "America/Eirunepe"
+	},
+	{
+		"name": "Central Standard Time - El Salvador",
+		"value": "America/El_Salvador"
+	},
+	{
+		"name": "Mountain Standard Time - Fort Nelson",
+		"value": "America/Fort_Nelson"
+	},
+	{
+		"name": "Brasilia Standard Time - Fortaleza",
+		"value": "America/Fortaleza"
+	},
+	{
+		"name": "Atlantic Time - Glace Bay",
+		"value": "America/Glace_Bay"
+	},
+	{
+		"name": "Atlantic Time - Goose Bay",
+		"value": "America/Goose_Bay"
+	},
+	{
+		"name": "Eastern Time - Grand Turk",
+		"value": "America/Grand_Turk"
+	},
+	{
+		"name": "Central Standard Time - Guatemala",
+		"value": "America/Guatemala"
+	},
+	{
+		"name": "Ecuador Time",
+		"value": "America/Guayaquil"
+	},
+	{
+		"name": "Guyana Time",
+		"value": "America/Guyana"
+	},
+	{
+		"name": "Atlantic Time - Halifax",
+		"value": "America/Halifax"
+	},
+	{
+		"name": "Cuba Time",
+		"value": "America/Havana"
+	},
+	{
+		"name": "Mexican Pacific Standard Time",
+		"value": "America/Hermosillo"
+	},
+	{
+		"name": "Eastern Time - Indianapolis",
+		"value": "America/Indiana/Indianapolis"
+	},
+	{
+		"name": "Central Time - Knox, Indiana",
+		"value": "America/Indiana/Knox"
+	},
+	{
+		"name": "Eastern Time - Marengo, Indiana",
+		"value": "America/Indiana/Marengo"
+	},
+	{
+		"name": "Eastern Time - Petersburg, Indiana",
+		"value": "America/Indiana/Petersburg"
+	},
+	{
+		"name": "Central Time - Tell City, Indiana",
+		"value": "America/Indiana/Tell_City"
+	},
+	{
+		"name": "Eastern Time - Vevay, Indiana",
+		"value": "America/Indiana/Vevay"
+	},
+	{
+		"name": "Eastern Time - Vincennes, Indiana",
+		"value": "America/Indiana/Vincennes"
+	},
+	{
+		"name": "Eastern Time - Winamac, Indiana",
+		"value": "America/Indiana/Winamac"
+	},
+	{
+		"name": "Mountain Time - Inuvik",
+		"value": "America/Inuvik"
+	},
+	{
+		"name": "Eastern Time - Iqaluit",
+		"value": "America/Iqaluit"
+	},
+	{
+		"name": "Eastern Standard Time - Jamaica",
+		"value": "America/Jamaica"
+	},
+	{
+		"name": "Alaska Time - Juneau",
+		"value": "America/Juneau"
+	},
+	{
+		"name": "Eastern Time - Louisville",
+		"value": "America/Kentucky/Louisville"
+	},
+	{
+		"name": "Eastern Time - Monticello, Kentucky",
+		"value": "America/Kentucky/Monticello"
+	},
+	{
+		"name": "Bolivia Time",
+		"value": "America/La_Paz"
+	},
+	{
+		"name": "Peru Standard Time",
+		"value": "America/Lima"
+	},
+	{
+		"name": "Pacific Time - Los Angeles",
+		"value": "America/Los_Angeles"
+	},
+	{
+		"name": "Brasilia Standard Time - Maceio",
+		"value": "America/Maceio"
+	},
+	{
+		"name": "Central Standard Time - Managua",
+		"value": "America/Managua"
+	},
+	{
+		"name": "Amazon Standard Time - Manaus",
+		"value": "America/Manaus"
+	},
+	{
+		"name": "Atlantic Standard Time - Martinique",
+		"value": "America/Martinique"
+	},
+	{
+		"name": "Central Time - Matamoros",
+		"value": "America/Matamoros"
+	},
+	{
+		"name": "Mexican Pacific Time - Mazatlan",
+		"value": "America/Mazatlan"
+	},
+	{
+		"name": "Central Time - Menominee",
+		"value": "America/Menominee"
+	},
+	{
+		"name": "Central Time - Merida",
+		"value": "America/Merida"
+	},
+	{
+		"name": "Alaska Time - Metlakatla",
+		"value": "America/Metlakatla"
+	},
+	{
+		"name": "Central Time - Mexico City",
+		"value": "America/Mexico_City"
+	},
+	{
+		"name": "St. Pierre &amp; Miquelon Time",
+		"value": "America/Miquelon"
+	},
+	{
+		"name": "Atlantic Time - Moncton",
+		"value": "America/Moncton"
+	},
+	{
+		"name": "Central Time - Monterrey",
+		"value": "America/Monterrey"
+	},
+	{
+		"name": "Uruguay Standard Time",
+		"value": "America/Montevideo"
+	},
+	{
+		"name": "Eastern Time - Nassau",
+		"value": "America/Nassau"
+	},
+	{
+		"name": "Eastern Time - New York",
+		"value": "America/New_York"
+	},
+	{
+		"name": "Eastern Time - Nipigon",
+		"value": "America/Nipigon"
+	},
+	{
+		"name": "Alaska Time - Nome",
+		"value": "America/Nome"
+	},
+	{
+		"name": "Fernando de Noronha Standard Time",
+		"value": "America/Noronha"
+	},
+	{
+		"name": "Central Time - Beulah, North Dakota",
+		"value": "America/North_Dakota/Beulah"
+	},
+	{
+		"name": "Central Time - Center, North Dakota",
+		"value": "America/North_Dakota/Center"
+	},
+	{
+		"name": "Central Time - New Salem, North Dakota",
+		"value": "America/North_Dakota/New_Salem"
+	},
+	{
+		"name": "West Greenland Time",
+		"value": "America/Nuuk"
+	},
+	{
+		"name": "Mountain Time - Ojinaga",
+		"value": "America/Ojinaga"
+	},
+	{
+		"name": "Eastern Standard Time - Panama",
+		"value": "America/Panama"
+	},
+	{
+		"name": "Eastern Time - Pangnirtung",
+		"value": "America/Pangnirtung"
+	},
+	{
+		"name": "Suriname Time",
+		"value": "America/Paramaribo"
+	},
+	{
+		"name": "Mountain Standard Time - Phoenix",
+		"value": "America/Phoenix"
+	},
+	{
+		"name": "Eastern Time - Port-au-Prince",
+		"value": "America/Port-au-Prince"
+	},
+	{
+		"name": "Atlantic Standard Time - Port of Spain",
+		"value": "America/Port_of_Spain"
+	},
+	{
+		"name": "Amazon Standard Time - Porto Velho",
+		"value": "America/Porto_Velho"
+	},
+	{
+		"name": "Atlantic Standard Time - Puerto Rico",
+		"value": "America/Puerto_Rico"
+	},
+	{
+		"name": "Punta Arenas Time",
+		"value": "America/Punta_Arenas"
+	},
+	{
+		"name": "Central Time - Rainy River",
+		"value": "America/Rainy_River"
+	},
+	{
+		"name": "Central Time - Rankin Inlet",
+		"value": "America/Rankin_Inlet"
+	},
+	{
+		"name": "Brasilia Standard Time - Recife",
+		"value": "America/Recife"
+	},
+	{
+		"name": "Central Standard Time - Regina",
+		"value": "America/Regina"
+	},
+	{
+		"name": "Central Time - Resolute",
+		"value": "America/Resolute"
+	},
+	{
+		"name": "Acre Standard Time - Rio Branco",
+		"value": "America/Rio_Branco"
+	},
+	{
+		"name": "Brasilia Standard Time - Santarem",
+		"value": "America/Santarem"
+	},
+	{
+		"name": "Chile Time",
+		"value": "America/Santiago"
+	},
+	{
+		"name": "Atlantic Standard Time - Santo Domingo",
+		"value": "America/Santo_Domingo"
+	},
+	{
+		"name": "Brasilia Standard Time - Sao Paulo",
+		"value": "America/Sao_Paulo"
+	},
+	{
+		"name": "East Greenland Time",
+		"value": "America/Scoresbysund"
+	},
+	{
+		"name": "Alaska Time - Sitka",
+		"value": "America/Sitka"
+	},
+	{
+		"name": "Newfoundland Time",
+		"value": "America/St_Johns"
+	},
+	{
+		"name": "Central Standard Time - Swift Current",
+		"value": "America/Swift_Current"
+	},
+	{
+		"name": "Central Standard Time - Tegucigalpa",
+		"value": "America/Tegucigalpa"
+	},
+	{
+		"name": "Atlantic Time - Thule",
+		"value": "America/Thule"
+	},
+	{
+		"name": "Eastern Time - Thunder Bay",
+		"value": "America/Thunder_Bay"
+	},
+	{
+		"name": "Pacific Time - Tijuana",
+		"value": "America/Tijuana"
+	},
+	{
+		"name": "Eastern Time - Toronto",
+		"value": "America/Toronto"
+	},
+	{
+		"name": "Pacific Time - Vancouver",
+		"value": "America/Vancouver"
+	},
+	{
+		"name": "Mountain Time, (Whitehorse)",
+		"value": "America/Whitehorse"
+	},
+	{
+		"name": "Central Time - Winnipeg",
+		"value": "America/Winnipeg"
+	},
+	{
+		"name": "Alaska Time - Yakutat",
+		"value": "America/Yakutat"
+	},
+	{
+		"name": "Mountain Time - Yellowknife",
+		"value": "America/Yellowknife"
+	},
+	{
+		"name": "Casey Time",
+		"value": "Antarctica/Casey"
+	},
+	{
+		"name": "Davis Time",
+		"value": "Antarctica/Davis"
+	},
+	{
+		"name": "Dumont-d’Urville Time",
+		"value": "Antarctica/DumontDUrville"
+	},
+	{
+		"name": "Eastern Australia Time - Macquarie",
+		"value": "Antarctica/Macquarie"
+	},
+	{
+		"name": "Mawson Time",
+		"value": "Antarctica/Mawson"
+	},
+	{
+		"name": "Palmer Time",
+		"value": "Antarctica/Palmer"
+	},
+	{
+		"name": "Rothera Time",
+		"value": "Antarctica/Rothera"
+	},
+	{
+		"name": "Syowa Time",
+		"value": "Antarctica/Syowa"
+	},
+	{
+		"name": "Troll Time",
+		"value": "Antarctica/Troll"
+	},
+	{
+		"name": "Vostok Time",
+		"value": "Antarctica/Vostok"
+	},
+	{
+		"name": "East Kazakhstan Time - Almaty",
+		"value": "Asia/Almaty"
+	},
+	{
+		"name": "Eastern European Time - Amman",
+		"value": "Asia/Amman"
+	},
+	{
+		"name": "Anadyr Standard Time",
+		"value": "Asia/Anadyr"
+	},
+	{
+		"name": "West Kazakhstan Time - Aqtau",
+		"value": "Asia/Aqtau"
+	},
+	{
+		"name": "West Kazakhstan Time - Aqtobe",
+		"value": "Asia/Aqtobe"
+	},
+	{
+		"name": "Turkmenistan Standard Time",
+		"value": "Asia/Ashgabat"
+	},
+	{
+		"name": "West Kazakhstan Time - Atyrau",
+		"value": "Asia/Atyrau"
+	},
+	{
+		"name": "Arabian Standard Time - Baghdad",
+		"value": "Asia/Baghdad"
+	},
+	{
+		"name": "Azerbaijan Standard Time",
+		"value": "Asia/Baku"
+	},
+	{
+		"name": "Indochina Time - Bangkok",
+		"value": "Asia/Bangkok"
+	},
+	{
+		"name": "Barnaul Time",
+		"value": "Asia/Barnaul"
+	},
+	{
+		"name": "Eastern European Time - Beirut",
+		"value": "Asia/Beirut"
+	},
+	{
+		"name": "Kyrgyzstan Time",
+		"value": "Asia/Bishkek"
+	},
+	{
+		"name": "Brunei Darussalam Time",
+		"value": "Asia/Brunei"
+	},
+	{
+		"name": "Yakutsk Standard Time - Chita",
+		"value": "Asia/Chita"
+	},
+	{
+		"name": "Ulaanbaatar Standard Time - Choibalsan",
+		"value": "Asia/Choibalsan"
+	},
+	{
+		"name": "India Standard Time - Colombo",
+		"value": "Asia/Colombo"
+	},
+	{
+		"name": "Eastern European Time - Damascus",
+		"value": "Asia/Damascus"
+	},
+	{
+		"name": "Bangladesh Standard Time",
+		"value": "Asia/Dhaka"
+	},
+	{
+		"name": "East Timor Time",
+		"value": "Asia/Dili"
+	},
+	{
+		"name": "Gulf Standard Time",
+		"value": "Asia/Dubai"
+	},
+	{
+		"name": "Tajikistan Time",
+		"value": "Asia/Dushanbe"
+	},
+	{
+		"name": "Famagusta Time",
+		"value": "Asia/Famagusta"
+	},
+	{
+		"name": "Eastern European Time - Gaza",
+		"value": "Asia/Gaza"
+	},
+	{
+		"name": "Eastern European Time - Hebron",
+		"value": "Asia/Hebron"
+	},
+	{
+		"name": "Indochina Time - Ho Chi Minh City",
+		"value": "Asia/Ho_Chi_Minh"
+	},
+	{
+		"name": "Hong Kong Standard Time",
+		"value": "Asia/Hong_Kong"
+	},
+	{
+		"name": "Hovd Standard Time",
+		"value": "Asia/Hovd"
+	},
+	{
+		"name": "Irkutsk Standard Time",
+		"value": "Asia/Irkutsk"
+	},
+	{
+		"name": "Western Indonesia Time - Jakarta",
+		"value": "Asia/Jakarta"
+	},
+	{
+		"name": "Eastern Indonesia Time",
+		"value": "Asia/Jayapura"
+	},
+	{
+		"name": "Israel Time",
+		"value": "Asia/Jerusalem"
+	},
+	{
+		"name": "Afghanistan Time",
+		"value": "Asia/Kabul"
+	},
+	{
+		"name": "Petropavlovsk-Kamchatski Standard Time",
+		"value": "Asia/Kamchatka"
+	},
+	{
+		"name": "Pakistan Standard Time",
+		"value": "Asia/Karachi"
+	},
+	{
+		"name": "Nepal Time",
+		"value": "Asia/Kathmandu"
+	},
+	{
+		"name": "Yakutsk Standard Time - Khandyga",
+		"value": "Asia/Khandyga"
+	},
+	{
+		"name": "India Standard Time - Kolkata",
+		"value": "Asia/Kolkata"
+	},
+	{
+		"name": "Krasnoyarsk Standard Time - Krasnoyarsk",
+		"value": "Asia/Krasnoyarsk"
+	},
+	{
+		"name": "Malaysia Time - Kuala Lumpur",
+		"value": "Asia/Kuala_Lumpur"
+	},
+	{
+		"name": "Malaysia Time - Kuching",
+		"value": "Asia/Kuching"
+	},
+	{
+		"name": "China Standard Time - Macao",
+		"value": "Asia/Macau"
+	},
+	{
+		"name": "Magadan Standard Time",
+		"value": "Asia/Magadan"
+	},
+	{
+		"name": "Central Indonesia Time",
+		"value": "Asia/Makassar"
+	},
+	{
+		"name": "Philippine Standard Time",
+		"value": "Asia/Manila"
+	},
+	{
+		"name": "Eastern European Time - Nicosia",
+		"value": "Asia/Nicosia"
+	},
+	{
+		"name": "Krasnoyarsk Standard Time - Novokuznetsk",
+		"value": "Asia/Novokuznetsk"
+	},
+	{
+		"name": "Novosibirsk Standard Time",
+		"value": "Asia/Novosibirsk"
+	},
+	{
+		"name": "Omsk Standard Time",
+		"value": "Asia/Omsk"
+	},
+	{
+		"name": "West Kazakhstan Time - Oral",
+		"value": "Asia/Oral"
+	},
+	{
+		"name": "Western Indonesia Time - Pontianak",
+		"value": "Asia/Pontianak"
+	},
+	{
+		"name": "Korean Standard Time - Pyongyang",
+		"value": "Asia/Pyongyang"
+	},
+	{
+		"name": "Arabian Standard Time - Qatar",
+		"value": "Asia/Qatar"
+	},
+	{
+		"name": "East Kazakhstan Time - Kostanay",
+		"value": "Asia/Qostanay"
+	},
+	{
+		"name": "West Kazakhstan Time - Qyzylorda",
+		"value": "Asia/Qyzylorda"
+	},
+	{
+		"name": "Arabian Standard Time - Riyadh",
+		"value": "Asia/Riyadh"
+	},
+	{
+		"name": "Sakhalin Standard Time",
+		"value": "Asia/Sakhalin"
+	},
+	{
+		"name": "Uzbekistan Standard Time - Samarkand",
+		"value": "Asia/Samarkand"
+	},
+	{
+		"name": "Korean Standard Time - Seoul",
+		"value": "Asia/Seoul"
+	},
+	{
+		"name": "China Standard Time - Shanghai",
+		"value": "Asia/Shanghai"
+	},
+	{
+		"name": "Singapore Standard Time",
+		"value": "Asia/Singapore"
+	},
+	{
+		"name": "Srednekolymsk Time",
+		"value": "Asia/Srednekolymsk"
+	},
+	{
+		"name": "Taipei Standard Time",
+		"value": "Asia/Taipei"
+	},
+	{
+		"name": "Uzbekistan Standard Time - Tashkent",
+		"value": "Asia/Tashkent"
+	},
+	{
+		"name": "Georgia Standard Time",
+		"value": "Asia/Tbilisi"
+	},
+	{
+		"name": "Iran Time",
+		"value": "Asia/Tehran"
+	},
+	{
+		"name": "Bhutan Time",
+		"value": "Asia/Thimphu"
+	},
+	{
+		"name": "Japan Standard Time",
+		"value": "Asia/Tokyo"
+	},
+	{
+		"name": "Tomsk Time",
+		"value": "Asia/Tomsk"
+	},
+	{
+		"name": "Ulaanbaatar Standard Time - Ulaanbaatar",
+		"value": "Asia/Ulaanbaatar"
+	},
+	{
+		"name": "Urumqi Time",
+		"value": "Asia/Urumqi"
+	},
+	{
+		"name": "Vladivostok Standard Time - Ust-Nera",
+		"value": "Asia/Ust-Nera"
+	},
+	{
+		"name": "Vladivostok Standard Time - Vladivostok",
+		"value": "Asia/Vladivostok"
+	},
+	{
+		"name": "Yakutsk Standard Time - Yakutsk",
+		"value": "Asia/Yakutsk"
+	},
+	{
+		"name": "Myanmar Time",
+		"value": "Asia/Yangon"
+	},
+	{
+		"name": "Yekaterinburg Standard Time",
+		"value": "Asia/Yekaterinburg"
+	},
+	{
+		"name": "Armenia Standard Time",
+		"value": "Asia/Yerevan"
+	},
+	{
+		"name": "Azores Time",
+		"value": "Atlantic/Azores"
+	},
+	{
+		"name": "Atlantic Time - Bermuda",
+		"value": "Atlantic/Bermuda"
+	},
+	{
+		"name": "Western European Time - Canary",
+		"value": "Atlantic/Canary"
+	},
+	{
+		"name": "Cape Verde Standard Time",
+		"value": "Atlantic/Cape_Verde"
+	},
+	{
+		"name": "Western European Time - Faroe",
+		"value": "Atlantic/Faroe"
+	},
+	{
+		"name": "Western European Time - Madeira",
+		"value": "Atlantic/Madeira"
+	},
+	{
+		"name": "Greenwich Mean Time - Reykjavik",
+		"value": "Atlantic/Reykjavik"
+	},
+	{
+		"name": "South Georgia Time",
+		"value": "Atlantic/South_Georgia"
+	},
+	{
+		"name": "Falkland Islands Standard Time",
+		"value": "Atlantic/Stanley"
+	},
+	{
+		"name": "Central Australia Time - Adelaide",
+		"value": "Australia/Adelaide"
+	},
+	{
+		"name": "Australian Eastern Standard Time - Brisbane",
+		"value": "Australia/Brisbane"
+	},
+	{
+		"name": "Central Australia Time - Broken Hill",
+		"value": "Australia/Broken_Hill"
+	},
+	{
+		"name": "Australian Central Standard Time",
+		"value": "Australia/Darwin"
+	},
+	{
+		"name": "Australian Central Western Standard Time",
+		"value": "Australia/Eucla"
+	},
+	{
+		"name": "Eastern Australia Time - Hobart",
+		"value": "Australia/Hobart"
+	},
+	{
+		"name": "Australian Eastern Standard Time - Lindeman",
+		"value": "Australia/Lindeman"
+	},
+	{
+		"name": "Lord Howe Time",
+		"value": "Australia/Lord_Howe"
+	},
+	{
+		"name": "Eastern Australia Time - Melbourne",
+		"value": "Australia/Melbourne"
+	},
+	{
+		"name": "Australian Western Standard Time",
+		"value": "Australia/Perth"
+	},
+	{
+		"name": "Eastern Australia Time - Sydney",
+		"value": "Australia/Sydney"
+	},
+	{
+		"name": "Greenwich Mean Time",
+		"value": "Etc/GMT"
+	},
+	{
+		"name": "Central European Time - Amsterdam",
+		"value": "Europe/Amsterdam"
+	},
+	{
+		"name": "Central European Time - Andorra",
+		"value": "Europe/Andorra"
+	},
+	{
+		"name": "Astrakhan Time",
+		"value": "Europe/Astrakhan"
+	},
+	{
+		"name": "Eastern European Time - Athens",
+		"value": "Europe/Athens"
+	},
+	{
+		"name": "Central European Time - Belgrade",
+		"value": "Europe/Belgrade"
+	},
+	{
+		"name": "Central European Time - Berlin",
+		"value": "Europe/Berlin"
+	},
+	{
+		"name": "Central European Time - Brussels",
+		"value": "Europe/Brussels"
+	},
+	{
+		"name": "Eastern European Time - Bucharest",
+		"value": "Europe/Bucharest"
+	},
+	{
+		"name": "Central European Time - Budapest",
+		"value": "Europe/Budapest"
+	},
+	{
+		"name": "Eastern European Time - Chisinau",
+		"value": "Europe/Chisinau"
+	},
+	{
+		"name": "Central European Time - Copenhagen",
+		"value": "Europe/Copenhagen"
+	},
+	{
+		"name": "Ireland Time",
+		"value": "Europe/Dublin"
+	},
+	{
+		"name": "Central European Time - Gibraltar",
+		"value": "Europe/Gibraltar"
+	},
+	{
+		"name": "Eastern European Time - Helsinki",
+		"value": "Europe/Helsinki"
+	},
+	{
+		"name": "Turkey Time",
+		"value": "Europe/Istanbul"
+	},
+	{
+		"name": "Eastern European Standard Time - Kaliningrad",
+		"value": "Europe/Kaliningrad"
+	},
+	{
+		"name": "Eastern European Time - Kiev",
+		"value": "Europe/Kiev"
+	},
+	{
+		"name": "Kirov Time",
+		"value": "Europe/Kirov"
+	},
+	{
+		"name": "Western European Time - Lisbon",
+		"value": "Europe/Lisbon"
+	},
+	{
+		"name": "United Kingdom Time",
+		"value": "Europe/London"
+	},
+	{
+		"name": "Central European Time - Luxembourg",
+		"value": "Europe/Luxembourg"
+	},
+	{
+		"name": "Central European Time - Madrid",
+		"value": "Europe/Madrid"
+	},
+	{
+		"name": "Central European Time - Malta",
+		"value": "Europe/Malta"
+	},
+	{
+		"name": "Moscow Standard Time - Minsk",
+		"value": "Europe/Minsk"
+	},
+	{
+		"name": "Central European Time - Monaco",
+		"value": "Europe/Monaco"
+	},
+	{
+		"name": "Moscow Standard Time - Moscow",
+		"value": "Europe/Moscow"
+	},
+	{
+		"name": "Central European Time - Oslo",
+		"value": "Europe/Oslo"
+	},
+	{
+		"name": "Central European Time - Paris",
+		"value": "Europe/Paris"
+	},
+	{
+		"name": "Central European Time - Prague",
+		"value": "Europe/Prague"
+	},
+	{
+		"name": "Eastern European Time - Riga",
+		"value": "Europe/Riga"
+	},
+	{
+		"name": "Central European Time - Rome",
+		"value": "Europe/Rome"
+	},
+	{
+		"name": "Samara Standard Time",
+		"value": "Europe/Samara"
+	},
+	{
+		"name": "Saratov Time",
+		"value": "Europe/Saratov"
+	},
+	{
+		"name": "Moscow Standard Time - Simferopol",
+		"value": "Europe/Simferopol"
+	},
+	{
+		"name": "Eastern European Time - Sofia",
+		"value": "Europe/Sofia"
+	},
+	{
+		"name": "Central European Time - Stockholm",
+		"value": "Europe/Stockholm"
+	},
+	{
+		"name": "Eastern European Time - Tallinn",
+		"value": "Europe/Tallinn"
+	},
+	{
+		"name": "Central European Time - Tirane",
+		"value": "Europe/Tirane"
+	},
+	{
+		"name": "Ulyanovsk Time",
+		"value": "Europe/Ulyanovsk"
+	},
+	{
+		"name": "Eastern European Time - Uzhhorod",
+		"value": "Europe/Uzhgorod"
+	},
+	{
+		"name": "Central European Time - Vienna",
+		"value": "Europe/Vienna"
+	},
+	{
+		"name": "Eastern European Time - Vilnius",
+		"value": "Europe/Vilnius"
+	},
+	{
+		"name": "Volgograd Standard Time",
+		"value": "Europe/Volgograd"
+	},
+	{
+		"name": "Central European Time - Warsaw",
+		"value": "Europe/Warsaw"
+	},
+	{
+		"name": "Eastern European Time - Zaporozhye",
+		"value": "Europe/Zaporozhye"
+	},
+	{
+		"name": "Central European Time - Zurich",
+		"value": "Europe/Zurich"
+	},
+	{
+		"name": "Indian Ocean Time",
+		"value": "Indian/Chagos"
+	},
+	{
+		"name": "Christmas Island Time",
+		"value": "Indian/Christmas"
+	},
+	{
+		"name": "Cocos Islands Time",
+		"value": "Indian/Cocos"
+	},
+	{
+		"name": "French Southern &amp; Antarctic Time",
+		"value": "Indian/Kerguelen"
+	},
+	{
+		"name": "Seychelles Time",
+		"value": "Indian/Mahe"
+	},
+	{
+		"name": "Maldives Time",
+		"value": "Indian/Maldives"
+	},
+	{
+		"name": "Mauritius Standard Time",
+		"value": "Indian/Mauritius"
+	},
+	{
+		"name": "Réunion Time",
+		"value": "Indian/Reunion"
+	},
+	{
+		"name": "Apia Time",
+		"value": "Pacific/Apia"
+	},
+	{
+		"name": "New Zealand Time",
+		"value": "Pacific/Auckland"
+	},
+	{
+		"name": "Bougainville Time",
+		"value": "Pacific/Bougainville"
+	},
+	{
+		"name": "Chatham Time",
+		"value": "Pacific/Chatham"
+	},
+	{
+		"name": "Chuuk Time",
+		"value": "Pacific/Chuuk"
+	},
+	{
+		"name": "Easter Island Time",
+		"value": "Pacific/Easter"
+	},
+	{
+		"name": "Vanuatu Standard Time",
+		"value": "Pacific/Efate"
+	},
+	{
+		"name": "Phoenix Islands Time",
+		"value": "Pacific/Enderbury"
+	},
+	{
+		"name": "Tokelau Time",
+		"value": "Pacific/Fakaofo"
+	},
+	{
+		"name": "Fiji Time",
+		"value": "Pacific/Fiji"
+	},
+	{
+		"name": "Tuvalu Time",
+		"value": "Pacific/Funafuti"
+	},
+	{
+		"name": "Galapagos Time",
+		"value": "Pacific/Galapagos"
+	},
+	{
+		"name": "Gambier Time",
+		"value": "Pacific/Gambier"
+	},
+	{
+		"name": "Solomon Islands Time",
+		"value": "Pacific/Guadalcanal"
+	},
+	{
+		"name": "Chamorro Standard Time",
+		"value": "Pacific/Guam"
+	},
+	{
+		"name": "Hawaii-Aleutian Standard Time",
+		"value": "Pacific/Honolulu"
+	},
+	{
+		"name": "Line Islands Time",
+		"value": "Pacific/Kiritimati"
+	},
+	{
+		"name": "Kosrae Time",
+		"value": "Pacific/Kosrae"
+	},
+	{
+		"name": "Marshall Islands Time - Kwajalein",
+		"value": "Pacific/Kwajalein"
+	},
+	{
+		"name": "Marshall Islands Time - Majuro",
+		"value": "Pacific/Majuro"
+	},
+	{
+		"name": "Marquesas Time",
+		"value": "Pacific/Marquesas"
+	},
+	{
+		"name": "Nauru Time",
+		"value": "Pacific/Nauru"
+	},
+	{
+		"name": "Niue Time",
+		"value": "Pacific/Niue"
+	},
+	{
+		"name": "Norfolk Island Time",
+		"value": "Pacific/Norfolk"
+	},
+	{
+		"name": "New Caledonia Standard Time",
+		"value": "Pacific/Noumea"
+	},
+	{
+		"name": "Samoa Standard Time",
+		"value": "Pacific/Pago_Pago"
+	},
+	{
+		"name": "Palau Time",
+		"value": "Pacific/Palau"
+	},
+	{
+		"name": "Pitcairn Time",
+		"value": "Pacific/Pitcairn"
+	},
+	{
+		"name": "Ponape Time",
+		"value": "Pacific/Pohnpei"
+	},
+	{
+		"name": "Papua New Guinea Time",
+		"value": "Pacific/Port_Moresby"
+	},
+	{
+		"name": "Cook Islands Standard Time",
+		"value": "Pacific/Rarotonga"
+	},
+	{
+		"name": "Tahiti Time",
+		"value": "Pacific/Tahiti"
+	},
+	{
+		"name": "Gilbert Islands Time",
+		"value": "Pacific/Tarawa"
+	},
+	{
+		"name": "Tonga Standard Time",
+		"value": "Pacific/Tongatapu"
+	},
+	{
+		"name": "Wake Island Time",
+		"value": "Pacific/Wake"
+	},
+	{
+		"name": "Wallis &amp; Futuna Time",
+		"value": "Pacific/Wallis"
+	}
+]

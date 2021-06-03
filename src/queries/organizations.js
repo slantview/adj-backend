@@ -6,6 +6,9 @@ export const GET_ALL_ORGANIZATIONS = gql`
             id
             name
             email
+            logo {
+                file_name
+            }
             about
             website
             facebook
@@ -34,6 +37,9 @@ export const CREATE_ORGANIZATION = gql`
             id
             name
             email
+            logo { 
+                file_name
+            }
             about
             website
             facebook

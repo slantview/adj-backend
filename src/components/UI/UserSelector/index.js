@@ -18,16 +18,17 @@ export const UserSelector = (props) => {
     const {
         name,
         handleSubmit,
-        setFieldValue
+        setFieldValue,
+        error
     } = props;
 
-    const { loading, error, data, refetch } = useQuery(GET_ALL_USERS);
+    const { loading, dataError, data, refetch } = useQuery(GET_ALL_USERS);
 	const [isLoading, setLoading] = useState(loading);
 
 	useEffect(() => {
 		if (!loading) {
 			setLoading(loading);
-			setUsers(data?.users);
+			setUsers(_.sortBy(data?.users, 'first_name'));
 		}
 	}, [loading, data]);
     
@@ -60,19 +61,24 @@ export const UserSelector = (props) => {
         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
             <label htmlFor="street_address" className="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
                 Add Team Members
+                <div>
+                    <span className="sm:mt-px sm:pt-2 text-xs font-normal">
+                        Select the team of users associated with this item.
+                    </span>
+                </div>
             </label>
             <div className="mt-1 sm:mt-0 sm:col-span-2">
                 <p id="add_team_members_helper" className="sr-only">
                     Search by email address
                 </p>
-                <div className="flex">
-                    <div className="flex-grow">
+                <div className="flex mt-1">
+                    <div className="flex-grow mt-2">
                         <Listbox value={selected} onChange={setSelected}>
                             {({ open }) => (
                                 <>
                                     <div className="relative">
                                         <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                            <span className="block truncate font-bold">{selected?.first_name} {selected?.last_name}</span>
+                                            <span className="block truncate">{selected?.first_name} {selected?.last_name}</span>
                                             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                                 <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                                             </span>
@@ -115,8 +121,11 @@ export const UserSelector = (props) => {
                                 </>
                             )}
                         </Listbox>
+                        <p className="mt-2 text-sm text-red-600" id="email-error">
+                            {error}
+                        </p>
                     </div>
-                    <span className="ml-3">
+                    <span className="ml-3 mt-2">
                         <button
                             type="button"
                             disabled={selected.id === 0}

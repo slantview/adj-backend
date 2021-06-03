@@ -20,29 +20,48 @@ const SiteForm = (props) => {
         handleSubmit,
         setFieldValue,
         values,
+        errors
     } = props;
     
     const [selected, setSelected] = useState(null);
+
+    const errorClasses = "border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500";
 
     return (
         <div className="max-w-7xl pt-10 pb-12 px-8 lg:pb-16 bg-white rounded-lg shadow mx-4">
             <div className="space-y-6">
                 <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
-                    <label htmlFor="street_address" className="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
+                    <label htmlFor="name" className="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
                         Site Name
+                        <div>
+                            <span className="sm:mt-px sm:pt-2 text-xs font-normal">
+                                Just use the short name, do not include .beacons.gg
+                            </span>
+                        </div>
                     </label>
+                    
                     <div className="mt-1 sm:mt-0 sm:col-span-2">
                         <Field
                             type="text"
                             name="name"
-                            className="block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md"
+                            className={
+                                "block w-full shadow-sm focus:ring-blue-1000 focus:border-blue-1000 sm:text-sm border-gray-300 rounded-md "
+                                + (errors.name ? errorClasses : "")}
                         />
+                        <p className="mt-2 text-sm text-red-600" id="email-error">
+                            {errors.name}
+                        </p>
                     </div>
                 </div>
 
                 <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
                     <label htmlFor="street_address" className="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
                         State
+                        <div>
+                            <span className="sm:mt-px sm:pt-2 text-xs font-normal">
+                                This will be the state after creation. Can be changed later.
+                            </span>
+                        </div>
                     </label>
                     <div className="mt-1 sm:mt-0 sm:col-span-2">
                         <RadioGroup value={values.state} onChange={(v) => setFieldValue('state',v)}>

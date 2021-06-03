@@ -37,19 +37,24 @@ export const OrganizationSelector = (props) => {
         <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-gray-200 sm:pt-5">
             <label htmlFor="street_address" className="block text-sm font-bold text-gray-700 sm:mt-px sm:pt-2">
                 Organization
+                <div>
+                    <span className="sm:mt-px sm:pt-2 text-xs font-normal">
+                        The organization associated with this item.
+                    </span>
+                </div>
             </label>
             <div className="mt-1 sm:mt-0 sm:col-span-2">
                 <p id="add_team_members_helper" className="sr-only">
                     Select Organization
                 </p>
                 <div className="flex">
-                    <div className="flex-grow">
+                    <div className="flex-grow mt-2">
                         <Listbox value={selected.name} onChange={setSelected}>
                             {({ open }) => (
                                 <>
                                     <div className="mt-1 relative">
                                         <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                            <span className="block font-bold truncate">{selected.name}</span>
+                                            <span className="block truncate">{selected.name}</span>
                                             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                                 <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                                             </span>

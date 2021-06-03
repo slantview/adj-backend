@@ -60,9 +60,9 @@ const ImageUpload = (props) => {
 				return (
 					<div
 						key={file.name+i}
-						className="text-center w-full overflow-hidden">
+						className="text-center items-center justify-center content-center">
 							<img
-								className="object-contain w-full"
+								className="object-contain max-h-48 mx-auto"
 								src={file.preview}
 								alt={file.name}
 							/>
@@ -86,7 +86,7 @@ const ImageUpload = (props) => {
                     Upload Image
             </button>
             <div className={classNames(
-                "mt-6 md:block overflow-hidden rounded-lg",
+                "mt-6 md:block rounded-lg items-center",
                 className,
                 thumbs.length > 0 ? "border-none" : "border-4 border-dashed border-gray-200",
                 isDragAccept ? " border-green-400" : "border-gray-300"
@@ -98,7 +98,7 @@ const ImageUpload = (props) => {
                        
                         <div className="dropzone-inner-wrapper">
                             { thumbs.length > 0 && !isDragAccept && 
-                                <div>
+                                <div className="object-contain h-12">
                                     {thumbs}
                                 </div>
                             }

@@ -10,18 +10,20 @@ const Select = (props) => {
     const [selected, setSelected] = useState(defaultValue);
 
     return (
-        <Listbox value={selected} onChange={setSelected}>
-            <Listbox.Button>{selected.name}</Listbox.Button>
-            <Listbox.Options>
-                {items.map((item) => (
-                    <Listbox.Option
-                        key={item.id}
-                        value={item}>
-                            {item.name}
-                    </Listbox.Option>
-                ))}
-            </Listbox.Options>
-        </Listbox>
+        <div className="border-2">
+            <Listbox value={selected} onChange={setSelected}>
+                <Listbox.Button>{selected?.name}</Listbox.Button>
+                <Listbox.Options>
+                    { items && items.length > 0 &&items.map((item) => (
+                        <Listbox.Option
+                            key={item.id}
+                            value={item}>
+                                {item.name}
+                        </Listbox.Option>
+                    ))}
+                </Listbox.Options>
+            </Listbox>
+        </div>
     )
 }
 

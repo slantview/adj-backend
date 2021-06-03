@@ -16,11 +16,12 @@ const pages = [
 
 const initialData = {
     name: '',
-    state: 'prelive'
+    state: 'live'
 }
 
 const validationSchema = Yup.object({
-	name: Yup.string().required("Site name is required.")
+	name: Yup.string().required("Site name is required."),
+    owners: Yup.array().min(1, "Must select a team member").required("Team members are required.")
 });
 
 const AddSite = (props) => {

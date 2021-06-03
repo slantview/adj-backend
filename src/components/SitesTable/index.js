@@ -324,7 +324,7 @@ const SitesTable = (props) => {
 										</div>
 									</div>
 								</td>
-								<td className="px-6 py-4 text-gray-400 text-sm">
+								<td className="hidden md:block px-6 py-4 text-gray-400 text-sm">
 									{site.id}
 								</td>
 								<td className="px-6 py-4">

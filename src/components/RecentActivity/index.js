@@ -75,8 +75,15 @@ const RecentActivity = (props) => {
 			let timeout = setTimeout(() => {
 				refetch();
 			}, 5000)
-			setLoading(loading);
-			setProvisioningLogsData(data?.provisioningLogs);
+			if (provisioningLogsData.length === 0) {
+				setLoading(loading);
+				setProvisioningLogsData(data?.provisioningLogs);
+			} else if (provisioningLogsData.length > 0 && data?.provisioningLogs?.length > 0) {
+				if (provisioningLogsData[0].id !== data?.provisioningLogs[0]) {
+					setLoading(loading);
+					setProvisioningLogsData(data?.provisioningLogs);
+				}
+			}
 		}
 		return (active, timeout) => {
 			clearTimeout(timeout);
@@ -93,6 +100,15 @@ const RecentActivity = (props) => {
 			return "started on " + moment(start).format("YYYY-MM-DD \\a\\t HH:mm:ss");
 		} 
 		return "completed in " + Math.floor(mins)+"m"+Math.floor(seconds)+"s";
+	}
+
+	const getRunningTime = (start) => {
+		const duration = moment.duration(
+			moment().diff(moment(start))
+		);
+		const mins = duration.asMinutes();
+		const seconds = duration.subtract(Math.floor(mins), 'minutes').asSeconds();
+		return Math.floor(mins)+"m"+Math.floor(seconds)+"s";
 	}
 
     return (
@@ -183,7 +199,7 @@ const RecentActivity = (props) => {
 								<td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
 									<div className="flex flex-col">
 										<div>
-											<a href={"/provisioning/log/" + log.id} className="group inline-flex space-x-2 truncate text-sm">
+											<a href={"/provisioning/log/" + log.id} className="group inline-flex space-x-2 truncate text-lg">
 												
 												{ log.state === "publish" &&
 													<UploadIcon 
@@ -198,28 +214,38 @@ const RecentActivity = (props) => {
 													/>
 												}
 												<div className="text-gray-500 truncate group-hover:text-gray-900">
-													<h3 className="text-lg font-bold text-blue-600 inline">{log.site.domain}</h3>
+													<h3 className="text-md font-bold text-blue-600 inline">{log.site.domain}</h3>
 													<span>
-														<svg className="inline-block ml-6 text-sm" stroke="currentColor" fill="currentColor" strokeWidth={0} viewBox="0 0 384 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+														<svg className="inline-block ml-6 text-sm w-3 h-3" stroke="currentColor" fill="currentColor" strokeWidth={0} viewBox="0 0 384 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
 															<path d="M384 144c0-44.2-35.8-80-80-80s-80 35.8-80 80c0 36.4 24.3 67.1 57.5 76.8-.6 16.1-4.2 28.5-11 36.9-15.4 19.2-49.3 22.4-85.2 25.7-28.2 2.6-57.4 5.4-81.3 16.9v-144c32.5-10.2 56-40.5 56-76.3 0-44.2-35.8-80-80-80S0 35.8 0 80c0 35.8 23.5 66.1 56 76.3v199.3C23.5 365.9 0 396.2 0 432c0 44.2 35.8 80 80 80s80-35.8 80-80c0-34-21.2-63.1-51.2-74.6 3.1-5.2 7.8-9.8 14.9-13.4 16.2-8.2 40.4-10.4 66.1-12.8 42.2-3.9 90-8.4 118.2-43.4 14-17.4 21.1-39.8 21.6-67.9 31.6-10.8 54.4-40.7 54.4-75.9zM80 64c8.8 0 16 7.2 16 16s-7.2 16-16 16-16-7.2-16-16 7.2-16 16-16zm0 384c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16-7.2 16-16 16zm224-320c8.8 0 16 7.2 16 16s-7.2 16-16 16-16-7.2-16-16 7.2-16 16-16z"></path>
 														</svg>
-														<span className="text-sm inline-block ml-1 text-gray-400">master</span>
+														<span className="text-xs inline-block ml-1 text-gray-400">master</span>
+														{ log.ended_at === null &&
+															<span className="inline-block ml-2 text-xs">Running for {getRunningTime(log.started_at)}</span>
+														}
 													</span>
 												</div>
 											</a>
 										</div>
 										<div className="mt-2">
 											<span className="inline-block">
-												{ log.success === true ? (
-													<svg className="h-5 w-5 inline-block text-green-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20 20" fill="currentColor">
-														<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-													</svg>
+												{ log.ended_at === null ? (
+													<span className="spinner-building inline-block w-4 h-4" />
 												) : (
-													<svg className="h-5 w-5 inline-block text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-														<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-													</svg>
+													<>
+														{ log.success === true ? (
+															<svg className="h-5 w-5 inline-block text-green-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20 20" fill="currentColor">
+																<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+															</svg>
+														) : (
+															<svg className="h-5 w-5 inline-block text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+																<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+															</svg>
+														)}
+													</>	
 												)}
-												<span className={"inline-block ml-2 font-bold text-gray-500"}>
+												
+												<span className={"inline-block ml-2 text-sm font-bold text-gray-500"}>
 													{ formatStateName(log.state) }
 												</span>
 												<span className="text-gray-500"> {getDuration(log.started_at, log.ended_at)}</span>
@@ -228,12 +254,13 @@ const RecentActivity = (props) => {
 									</div>
 								</td>
 								<td className="px-6 py-4">
-									<span className="text-xs uppercase bg-gray-100 text-gray-800 px-2">Provisioning</span>
+									<span className="text-xs uppercase font-bold bg-gray-100 text-gray-800 px-2">Provision</span>
 								</td>
 								<td className="px-6 py-8 hidden whitespace-nowrap text-gray-500 md:block"> 
 									<span className={classNames(
 										log.success ? "text-green-800 bg-green-200" : "text-red-800 bg-red-200",
 										statusStyles[log.state],
+										'font-bold',
 										'inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium capitalize bg-gray-100 text-gray-800')}>
 											{log.state.replace('_', ' ')}
 									</span>

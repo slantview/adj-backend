@@ -11,12 +11,12 @@ module.exports = {
               border: '4px', // border-width of the spinner (shouldn't be bigger than half the spinner's size)
               speed: '1000ms', // the speed at which the spinner should rotate
             },
-            // md: {
-            //   color: theme('colors.red.500', 'red'),
-            //   size: '2em',
-            //   border: '2px',
-            //   speed: '500ms',
-            // },
+            building: {
+              color: theme('colors.yellow.500', 'yellow'),
+              size: '1em',
+              border: '2px',
+              speed: '500ms',
+            },
         }),
         extend: {
             fontFamily: {

@@ -210,16 +210,14 @@ const UsersTable = (props) => {
 										
 										
 										<div className="flex-1 text-sm truncate mt-1 ml-0 pl-0">
-											<div className="">
-												<svg className="h-5 w-5 text-green-500 inline-block" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20 20" fill="currentColor">
-													<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-												</svg>
-												<span className={"inline-block px-2 py-2 text-gray-500 uppercase " + 
-													user.admin ? "text-green-500 bg-green-200 text-sm" : "text-gray-500 text-gray-200"}>
+											<div className="my-2">
+												<span className={"inline-block  text-gray-500 uppercase " + 
+													user.admin ? "text-green-800 bg-green-200 text-xs rounded-lg px-2 py-1 uppercase" : "text-gray-500 bg-gray-200"}>
 													{ user.admin ? "Admin" : "Normal" }
 												</span>
 											</div>
 											<div className="mt-2">
+												<span className="inline-block mr-2 text-xs font-bold text-gray-500">Last Updated: </span>
 												<span className="text-sm text-gray-800 text-bold inline-block">
 													<CalendarIcon className="w-4 h-4 inline-block mr-1" />
 													<time className="text-gray-400 text-md" dateTime={user.updated_at}>
@@ -248,18 +246,28 @@ const UsersTable = (props) => {
                 aria-label="Pagination"
               >
                 <div className="flex-1 flex justify-between">
-                  <a
-                    href="#"
-                    className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
-                  >
-                    Previous
-                  </a>
-                  <a
-                    href="#"
-                    className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
-                  >
-                    Next
-                  </a>
+				{ page > 0 ? (
+					<a
+						href="#"
+						onClick={pageBack}
+						className="rrelative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
+					>
+						Previous
+					</a>
+				) : (
+					<span>&nbsp;</span>
+				)}
+				{ (page*10)+10 < usersDisplayData?.length ? (
+					<a
+						href="#"
+						onClick={pageForward}
+						className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
+						>
+						Next
+					</a>
+				) : (
+					<span>&nbsp;</span>
+				)}
                 </div>
               </nav>
             </div>
@@ -276,13 +284,16 @@ const UsersTable = (props) => {
                             Event
                           </th>
 						  <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            ID
+                          </th>
+						  <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Type
                           </th>
                           <th className="hidden px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:block">
                             Status
                           </th>
                           <th className="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Date
+                            Last Updated
                           </th>
                         </tr>
                       </thead>
@@ -309,6 +320,9 @@ const UsersTable = (props) => {
 										</div>
 									</div>
 								</td>
+								<td className="px-6 py-4 w-full text-gray-400 text-sm">
+									{user.id}
+								</td>
 								<td className="px-6 py-4">
 									<span className={classNames(
 										statusStyles[user.admin ? "admin" : "normal"],
@@ -324,7 +338,20 @@ const UsersTable = (props) => {
 									</span>
 								</td>
 								<td className="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-									<time dateTime={user.updated_at}>{user.updated_at}</time>
+									<div className="flex flex-col">
+										<div className="text-sm inline-block">
+											<time className="text-gray-800 text-md" dateTime={user.updated_at}>
+												{moment(user.updated_at).format("YYYY-MM-DD")}
+											</time>
+											<CalendarIcon className="text-gray-500 w-4 h-4 inline-block ml-2" />
+										</div>
+										<div className="ml-4 text-sm inline-block">
+											<time className="text-gray-800 text-md" dateTime={user.updated_at}>
+												{moment(user.updated_at).format("HH:mm:ss")}
+											</time>
+											<ClockIcon className="text-gray-500 w-4 h-4 inline-block ml-2" />
+										</div>
+									</div>
 								</td>
 							</tr>
                         ))}
@@ -343,18 +370,24 @@ const UsersTable = (props) => {
                         </p>
                       </div>
                       <div className="flex-1 flex justify-between sm:justify-end">
-                        <a
-                          href="#"
-                          className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                        >
-                          Previous
-                        </a>
-                        <a
-                          href="#"
-                          className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                        >
-                          Next
-                        </a>
+							{ page > 0 &&
+								<a
+									href="#"
+									onClick={pageBack}
+									className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+								>
+									Previous
+								</a>
+							}
+							{ (page*10)+10 < usersDisplayData.length &&
+								<a
+									href="#"
+									onClick={pageForward}
+									className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+									>
+									Next
+								</a>
+							}
                       </div>
                     </nav>
                   </div>

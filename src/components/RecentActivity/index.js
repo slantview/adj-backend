@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { CalendarIcon, ClockIcon } from '@heroicons/react/outline';
-import { ChevronRightIcon, CogIcon, UploadIcon } from '@heroicons/react/solid';
+import { ChevronRightIcon, CloudUploadIcon, CogIcon } from '@heroicons/react/solid';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -129,11 +129,11 @@ const RecentActivity = (props) => {
 										<span className="flex items-center space-x-4">
 											<span className="flex-1 flex flex-col truncate">
 												<span className="flex-1 flex">
-													{ log.state === "publishing" &&
-														<UploadIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
-													}
-													{ log.state === "building_site" &&
+													{ log.type === "provision" &&
 														<CogIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
+													}
+													{ log.type === "build" &&
+														<CloudUploadIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
 													}
 													<span className="truncate inline-block ml-2 font-bold text-blue-600 text-sm">{log.site.domain}</span>
 												</span>
@@ -141,14 +141,20 @@ const RecentActivity = (props) => {
 												
 												<div className="flex-1 text-sm truncate mt-1 ml-0 pl-0">
 													<div className="flex-1">
-														{ log.success === true ? (
-															<svg className="h-5 w-5 inline-block text-green-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20 20" fill="currentColor">
-																<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-															</svg>
+														{ log.ended_at === null ? (
+															<span className="spinner-building inline-block w-5 h-5" />
 														) : (
-															<svg className="h-5 w-5 inline-block text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-																<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-															</svg>
+															<>
+																{ log.success === true ? (
+																	<svg className="h-5 w-5 inline-block text-green-500" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20 20" fill="currentColor">
+																		<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+																	</svg>
+																) : (
+																	<svg className="h-5 w-5 inline-block text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+																		<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+																	</svg>
+																)}
+															</>
 														)}
 														
 														<span className="inline-block ml-2 text-gray-500 font-bold capitalize">
@@ -201,14 +207,14 @@ const RecentActivity = (props) => {
 										<div>
 											<a href={"/provisioning/log/" + log.id} className="group inline-flex space-x-2 truncate text-lg">
 												
-												{ log.state === "publish" &&
-													<UploadIcon 
+												{ log.type === "provision" &&
+													<CogIcon 
 														className="flex-shrink-0 h-5 w-5 mt-1 text-gray-400 group-hover:text-gray-500"
 														aria-hidden="true"
 													/>
 												}
-												{ log.state === "build" &&
-													<CogIcon
+												{ log.type === "build" &&
+													<CloudUploadIcon
 														className="flex-shrink-0 h-5 w-5 mt-1 text-gray-400 group-hover:text-gray-500"
 														aria-hidden="true"
 													/>

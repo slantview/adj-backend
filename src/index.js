@@ -6,7 +6,9 @@ import { Redirect, Route, BrowserRouter as Router, Switch } from 'react-router-d
 import AddOrganization from 'pages/AddOrganization';
 import AddSite from 'pages/AddSite';
 import AddUser from 'pages/AddUser';
+import OrganizationView from 'pages/OrganizationView';
 import SettingsPage from 'pages/SettingsPage';
+import BackendProvider from 'providers/BackendProvider';
 import UserProvider from 'providers/UserProvider';
 
 import Application from './layout/Application';
@@ -19,7 +21,6 @@ import Users from './pages/Users';
 import NotificationProvider from './providers/NotificationProvider';
 
 import './assets/styles/index.css';
-import BackendProvider from 'providers/BackendProvider';
 
 const pageVariants = {
 	initial: {
@@ -55,6 +56,7 @@ ReactDOM.render(
 
 									<Route exact path="/organizations"><Organizations /></Route>
 									<Route exact path="/organizations/new"><AddOrganization /></Route>
+									<Route exact path="/organizations/view/:id"><OrganizationView /></Route>
 									
 									<Route exact path="/sites"><Sites /></Route>
 									<Route exact path="/sites/new"><AddSite /></Route>

@@ -2,6 +2,8 @@ import firebase from 'firebase/app';
 import moment from 'moment-timezone';
 import React, { Component, createContext } from "react";
 
+import Loading from 'components/Loading';
+
 export const UserContext = createContext({ user: null, token: null, admin: false, expires: null });
 class UserProvider extends Component {
     constructor(props) {
@@ -65,6 +67,14 @@ class UserProvider extends Component {
     };
 
     render() {
+
+        if (!this.state.user) {
+            return (
+                <div className="text-center min-h-screen">
+                    <Loading showText={true} />
+                </div>
+            )
+        }
         return (
             <UserContext.Provider value={this.state}>
                 {this.props.children}

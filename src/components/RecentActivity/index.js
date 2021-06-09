@@ -99,7 +99,7 @@ const RecentActivity = (props) => {
 		if (!end) {
 			return "started on " + moment(start).format("YYYY-MM-DD \\a\\t HH:mm:ss");
 		} 
-		return "completed in " + Math.floor(mins)+"m"+Math.floor(seconds)+"s";
+		return " in " + Math.floor(mins)+"m "+Math.floor(seconds)+"s";
 	}
 
 	const getRunningTime = (start) => {
@@ -156,7 +156,7 @@ const RecentActivity = (props) => {
 														</span>
 													</div>
 													<span className="text-gray-600 inline-block ml-7">
-														<span className="text-gray-500"> {getDuration(log.started_at, log.ended_at)}</span>
+														<span className="text-gray-500"> {log.success ? "Succeeded" : "Failed" } {getDuration(log.started_at, log.ended_at)}.</span>
 													</span>
 													
 												</div>
@@ -248,13 +248,13 @@ const RecentActivity = (props) => {
 												<span className={"inline-block ml-2 text-sm font-bold text-gray-500"}>
 													{ formatStateName(log.state) }
 												</span>
-												<span className="text-gray-500"> {getDuration(log.started_at, log.ended_at)}</span>
+												<span className="text-gray-500"> {log.message} {getDuration(log.started_at, log.ended_at)}.</span>
 											</span>
 										</div>
 									</div>
 								</td>
 								<td className="px-6 py-4">
-									<span className="text-xs uppercase font-bold bg-gray-100 text-gray-800 px-2">Provision</span>
+									<span className="text-xs uppercase font-bold bg-gray-100 text-gray-800 px-2">{log.type}</span>
 								</td>
 								<td className="px-6 py-8 hidden whitespace-nowrap text-gray-500 md:block"> 
 									<span className={classNames(

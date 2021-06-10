@@ -176,7 +176,7 @@ const OrganizationsTable = (props) => {
 								<td className="max-w-0 px-6 py-4 whitespace-nowrap text-sm text-gray-900">
 									<div className="flex flex-col">
 										<div>
-											<a href={'/organizations/view/' + org.id} className="group inline-flex space-x-2 truncate text-sm">
+											<Link to={'/organizations/view/' + org.id} className="group inline-flex space-x-2 truncate text-sm">
                                                 <OfficeBuildingIcon 
                                                     className="flex-shrink-0 h-5 w-5 mt-1 text-gray-400 group-hover:text-gray-500"
                                                     aria-hidden="true"
@@ -184,7 +184,7 @@ const OrganizationsTable = (props) => {
 												<div className="text-gray-500 truncate group-hover:text-gray-900">
 													<h3 className="text-lg font-bold text-blue-600 inline">{org.name}</h3>
 												</div>
-											</a>
+											</Link>
 										</div>
 										<div className="">
 											<span className="inline-block">

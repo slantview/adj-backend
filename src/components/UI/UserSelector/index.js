@@ -1,11 +1,12 @@
-import { RadioGroup } from '@headlessui/react';
-import { PlusIcon } from '@heroicons/react/solid';
 import { useQuery } from '@apollo/client';
-import React, { useState, Fragment, useEffect } from 'react';
-import { CheckIcon } from '@heroicons/react/outline';
-import { CheckCircleIcon, MinusCircleIcon, SelectorIcon, UserCircleIcon } from '@heroicons/react/solid';
+import { RadioGroup } from '@headlessui/react';
 import { Listbox, Transition } from '@headlessui/react'
+import { CheckIcon } from '@heroicons/react/outline';
+import { PlusIcon } from '@heroicons/react/solid';
+import { CheckCircleIcon, MinusCircleIcon, SelectorIcon, UserCircleIcon } from '@heroicons/react/solid';
 import _ from 'lodash';
+import React, { Fragment, useEffect, useState } from 'react';
+
 import { GET_ALL_USERS } from 'queries/users';
 
 function classNames(...classes) {
@@ -19,10 +20,10 @@ export const UserSelector = (props) => {
         name,
         handleSubmit,
         setFieldValue,
-        error
+        value
     } = props;
 
-    const { loading, dataError, data, refetch } = useQuery(GET_ALL_USERS);
+    const { loading, error, data, refetch } = useQuery(GET_ALL_USERS);
 	const [isLoading, setLoading] = useState(loading);
 
 	useEffect(() => {
@@ -33,7 +34,7 @@ export const UserSelector = (props) => {
 	}, [loading, data]);
     
     const [users, setUsers] = useState([]);
-    const [selectedUsers, setSelectedUsers] = useState([]);
+    const [selectedUsers, setSelectedUsers] = useState(value);
     const [selected, setSelected] = useState(selectUser);
 
     const removeItem = (id) => {
@@ -42,7 +43,6 @@ export const UserSelector = (props) => {
         users.push(user);
         setUsers(users);
     };
-
 
     const removeUser = (id) => {
         setUsers(users.filter(u => u.id !== id));

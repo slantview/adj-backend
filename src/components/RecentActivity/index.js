@@ -125,7 +125,7 @@ const RecentActivity = (props) => {
 						<>
 							{ provisioningLogsData.slice(0, 10).map((log) => (
 								<li key={log.id}>
-									<Link to={"/provisioning/logs/" + log.id} className="block px-4 py-4 bg-white hover:bg-gray-50">
+									<Link to={"/sites/view/" + log.site.id} className="block px-4 py-4 bg-white hover:bg-gray-50">
 										<span className="flex items-center space-x-4">
 											<span className="flex-1 flex flex-col truncate">
 												<span className="flex-1 flex">
@@ -205,7 +205,7 @@ const RecentActivity = (props) => {
 								<td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
 									<div className="flex flex-col">
 										<div>
-											<a href={"/provisioning/log/" + log.id} className="group inline-flex space-x-2 truncate text-lg">
+											<Link to={"/provisioning/log/" + log.id} className="group inline-flex space-x-2 truncate text-lg">
 												
 												{ log.type === "provision" &&
 													<CogIcon 
@@ -231,7 +231,7 @@ const RecentActivity = (props) => {
 														}
 													</span>
 												</div>
-											</a>
+											</Link>
 										</div>
 										<div className="mt-2">
 											<span className="inline-block">

@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import ImageUpload from 'components/ImageUpload';
 import { Field } from 'formik';
-import Select from 'components/UI/Select';
-import timezones from 'components/OrganizationForm/timezones.json';
 import _ from 'lodash';
+import React, { useState } from 'react';
+
+import ImageUpload from 'components/ImageUpload';
+// @ts-ignore
+import timezones from 'components/OrganizationForm/timezones.json';
+import Select from 'components/UI/Select';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -11,14 +13,10 @@ function classNames(...classes) {
 
 const Step1 = (props) => {
     const {
-        handleSubmit,
         setFieldValue,
         values,
-        errors,
-
+        errors
     } = props;
-    
-    const [selected, setSelected] = useState(null);
 
     return (
         <div className="space-y-6 mt-8 mb-16">
@@ -30,6 +28,7 @@ const Step1 = (props) => {
                     <Field
                         type="text"
                         name="name"
+                        value={values.name}
                         className="block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md"
                     />
                 </div>
@@ -45,6 +44,7 @@ const Step1 = (props) => {
                         id="about"
                         name="about"
                         rows={3}
+                        value={values.about}
                         className="block w-full shadow-sm focus:ring-blue-1000 focus:border-blue-1000 sm:text-sm border-gray-300 rounded-md"
                     />
                 </div>

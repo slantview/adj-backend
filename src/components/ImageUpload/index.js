@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { useDropzone } from 'react-dropzone';
-import { CheckIcon, XIcon, PhotographIcon } from '@heroicons/react/solid';
+import { CheckIcon, PhotographIcon, XIcon } from '@heroicons/react/solid';
 import { Field } from 'formik';
+import React, { useEffect, useState } from 'react'
+import { useDropzone } from 'react-dropzone';
 
 const ImageUpload = (props) => {
     const {

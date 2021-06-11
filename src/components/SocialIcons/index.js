@@ -59,9 +59,11 @@ const SocialIcons = (props) => {
                 </div>
             }
             { discord &&
-                <a href={discord} target="new" className="hover:text-blue-400 m-0">
-                    <FontAwesomeIcon className="w-10 h-10 inline-block text-gray-500 hover:text-blue-400" icon={faDiscord} />
-                </a>
+                <div className={itemClassName}>
+                    <a href={discord} target="new" className="hover:text-blue-400 m-0">
+                        <FontAwesomeIcon className="w-10 h-10 inline-block text-gray-500 hover:text-blue-400" icon={faDiscord} />
+                    </a>
+                </div>
             }
         </div>
     )

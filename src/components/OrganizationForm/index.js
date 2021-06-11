@@ -66,6 +66,13 @@ const OrganizationForm = (props) => {
 		e.preventDefault();
 	}
 
+	const handleSelectStep = (e, i) => {
+		steps[currentStep].status = 'upcoming';
+		steps[i].status = 'current';
+		setCurrentStep(i);
+		e.preventDefault();
+	}
+
 	const handleSubmitAdd = (values, actions) => {
 		const newOrganization = {
             name: values.name,
@@ -117,7 +124,7 @@ const OrganizationForm = (props) => {
 					{ steps.map((step, stepIdx) => (
 						<li key={step.name} className="relative md:flex-1 md:flex">
 							{ step.status === 'complete' ? (
-								<a href="#" onClick={(e) => { setCurrentStep(stepIdx); e.preventDefault(); }} className="group flex items-center w-full">
+								<a href="#" onClick={(e) => handleSelectStep(e, stepIdx)} className="group flex items-center w-full">
 									<span className="px-6 py-4 flex items-center text-sm font-medium">
 									<span className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-blue-600 rounded-full group-hover:bg-blue-800">
 										<CheckIcon className="w-6 h-6 text-white" aria-hidden="true" />
@@ -126,14 +133,14 @@ const OrganizationForm = (props) => {
 									</span>
 								</a>
 							) : step.status === 'current' ? (
-								<a href="#" onClick={(e) => { setCurrentStep(stepIdx); e.preventDefault(); }} className="px-6 py-4 flex items-center text-sm font-medium" aria-current="step">
+								<a href="#" onClick={(e) => handleSelectStep(e, stepIdx)} className="px-6 py-4 flex items-center text-sm font-medium" aria-current="step">
 									<span className="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-blue-600 rounded-full">
 										<span className="text-blue-600">{step.id}</span>
 									</span>
 									<span className="ml-4 text-sm font-bold text-blue-600">{step.name}</span>
 								</a>
 							) : (
-								<a href="#" onClick={(e) => { setCurrentStep(stepIdx); e.preventDefault(); }} className="group flex items-center">
+								<a href="#" onClick={(e) => handleSelectStep(e, stepIdx)} className="group flex items-center">
 									<span className="px-6 py-4 flex items-center text-sm font-medium">
 									<span className="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
 										<span className="text-gray-500 group-hover:text-gray-900">{step.id}</span>

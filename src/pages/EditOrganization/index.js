@@ -7,8 +7,8 @@ import Breadcrumbs from 'components/Breadcrumbs';
 import Loading from 'components/Loading';
 import OrganizationForm from 'components/OrganizationForm';
 import Content from 'layout/Content';
-import { GET_ORGANIZATION, UPDATE_ORGANIZATION } from 'queries/organizations';
 import { NotificationContext } from 'providers/NotificationProvider';
+import { GET_ORGANIZATION, UPDATE_ORGANIZATION } from 'queries/organizations';
 
 const EditOrganization = (props) => {
     // @ts-ignore
@@ -93,7 +93,7 @@ const EditOrganization = (props) => {
 
     const pages = [
         { name: 'Organizations', href: '/organizations', current: false },
-        { name: 'Edit Organization', href: '/organizations/edit/' + id, current: true }
+        { name: 'Edit ' + organizationData?.name ?? 'Organization', href: '/organizations/edit/' + id, current: true }
     ]
 
     return (
@@ -101,7 +101,7 @@ const EditOrganization = (props) => {
             <Breadcrumbs pages={pages} />
             <div className="md:flex md:items-center md:justify-between py-4 max-w-7xl mx-auto sm:px-6 sm:py-6 lg:px-8">
                 <div className="min-w-0">
-                    <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate mx-2 md:mx-4">Edit Organization</h2>
+                    <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate mx-2 md:mx-4">Edit {organizationData?.name}</h2>
                 </div>
             </div>
                 

@@ -37,3 +37,35 @@ export const CREATE_SITE = gql`
         }
     }
 `
+
+export const GET_SITE = gql`
+    query($id:ID!) {
+        site(id: $id) {
+            id
+            name
+            url
+            domain
+            backend_domain
+            backend_url
+            firebase_site
+            provisioning_state
+            state
+            owners {
+                id
+                first_name
+                last_name
+                email
+            }
+            organization {
+                id
+                name
+            }
+            created_at
+            updated_at
+            deleted_at
+            suspended_at
+            built_at
+
+        }
+    }
+`;

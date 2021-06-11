@@ -9,6 +9,7 @@ import AddUser from 'pages/AddUser';
 import EditOrganization from 'pages/EditOrganization';
 import OrganizationView from 'pages/OrganizationView';
 import SettingsPage from 'pages/SettingsPage';
+import SiteView from 'pages/SiteView';
 import BackendProvider from 'providers/BackendProvider';
 import UserProvider from 'providers/UserProvider';
 
@@ -22,6 +23,7 @@ import Users from './pages/Users';
 import NotificationProvider from './providers/NotificationProvider';
 
 import './assets/styles/index.css';
+import EditSite from 'pages/EditSite';
 
 const pageVariants = {
 	initial: {
@@ -62,6 +64,8 @@ ReactDOM.render(
 									
 									<Route exact path="/sites"><Sites /></Route>
 									<Route exact path="/sites/new"><AddSite /></Route>
+									<Route exact path="/sites/view/:id"><SiteView /></Route>
+									<Route exact path="/sites/edit/:id"><EditSite /></Route>
 
 									<Route exact path="/users"><Users /></Route>
 									<Route exact path="/users/new"><AddUser /></Route>

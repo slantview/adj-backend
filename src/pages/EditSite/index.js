@@ -73,7 +73,7 @@ const EditSite = (props) => {
                             type: 'success',
                             message: "Successfully updated site: " + updatedSite.name
                         });
-                        history.push('/sites', { refresh: true });
+                        history.push('/sites/view/' + id, { refresh: true });
                     });
             })
             .catch(e => {

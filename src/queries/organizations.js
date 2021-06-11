@@ -28,6 +28,7 @@ export const GET_ALL_ORGANIZATIONS = gql`
                 first_name
                 last_name
                 email
+                admin
                 created_at
             }
             sites {
@@ -110,6 +111,7 @@ export const GET_ORGANIZATION = gql`
                 first_name
                 last_name
                 email
+                admin
                 created_at
             }
             sites {
@@ -154,6 +156,8 @@ export const UPDATE_ORGANIZATION = gql`
                 first_name
                 last_name
                 email
+                admin
+                created_at
             }
         }
     }

@@ -55,6 +55,7 @@ export const GET_SITE = gql`
                 first_name
                 last_name
                 email
+                admin
                 created_at
             }
             organization {
@@ -105,6 +106,7 @@ export const UPDATE_SITE = gql`
                 first_name
                 last_name
                 email
+                admin
                 created_at
             }
             organization {

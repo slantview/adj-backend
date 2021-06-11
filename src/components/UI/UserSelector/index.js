@@ -46,7 +46,9 @@ export const UserSelector = (props) => {
 
     const removeItem = (id) => {
         const user = _.find(selectedUsers, ['id', id]);
-        setSelectedUsers(selectedUsers.filter(u => u.id !== id));
+        const newSelectedUsers = selectedUsers.filter(u => u.id !== id);
+        setSelectedUsers(newSelectedUsers);
+        setFieldValue(name, newSelectedUsers)
         users.push(user);
         setUsers(users);
     };

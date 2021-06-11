@@ -74,6 +74,8 @@ const OrganizationForm = (props) => {
 	}
 
 	const handleSubmitAdd = (values, actions) => {
+		console.log('values', values);
+		
 		const newOrganization = {
             name: values.name,
 			about: values.about,

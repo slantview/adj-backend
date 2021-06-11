@@ -180,7 +180,7 @@ const OrganizationView = (props) => {
                                             <dt className="text-sm font-medium text-gray-500">Website</dt>
                                             <dd className="mt-1 text-sm text-gray-900">
                                                 {/* @ts-ignore */}
-                                                <Link to={organizationData.website}>{organizationData.website}</Link>
+                                                { organizationData?.website && <Link to={organizationData.website}>{organizationData.website}</Link> }
                                             </dd>
                                         </div>
                                         <div className="sm:col-span-1">

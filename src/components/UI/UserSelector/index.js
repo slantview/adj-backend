@@ -37,9 +37,9 @@ export const UserSelector = (props) => {
 	}, [loading, data]);
     
     useEffect(() => {
-        const existingUsers = value.map(u => { 
+        const existingUsers = value?.map(u => { 
             return u; 
-        })
+        }) ?? [];
         setUsers(_.sortBy(_.differenceBy(data?.users, existingUsers, 'id'), 'first_name'));
         setSelectedUsers(existingUsers);
     }, [value])

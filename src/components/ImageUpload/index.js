@@ -45,10 +45,9 @@ const ImageUpload = (props) => {
     }
 
     useEffect(() => {
-        console.log(value);
         if (value && value.length > 0) {
             setThumbs(getThumbs(value));
-        } else {
+        } else if (value?.public_url) {
             setThumbs(getThumbs([{
                 name: "preview.png",
                 preview: value.public_url

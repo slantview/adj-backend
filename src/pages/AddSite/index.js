@@ -37,7 +37,7 @@ const AddSite = (props) => {
 
     const handleSubmit = (values, actions) => {
         const newSite = {
-            name: values.name,
+            name: values.name.toLowerCase(),
             state: values.state,
             owners: values.owners.map(o => o.id),
             organization_id: values.organization_id

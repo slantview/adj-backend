@@ -42,7 +42,20 @@ const ImageUpload = (props) => {
 
     const classNames = (...classes) => {
         return classes.filter(Boolean).join(' ')
-      }
+    }
+
+    useEffect(() => {
+        console.log(value);
+        if (value && value.length > 0) {
+            setThumbs(getThumbs(value));
+        } else {
+            setThumbs(getThumbs([{
+                name: "preview.png",
+                preview: value.public_url
+            }]))
+        }
+       
+    }, [value]);
 
     useEffect(() => {
 		// if (files && files.length === 0 && value && value.length === 1) {
@@ -55,26 +68,29 @@ const ImageUpload = (props) => {
 		// 	}));
 		// }
 		if (thumbs?.length !== files?.length && files?.length > 0) {
-			let i=0;
-			const newThumbs = files ? files.map((file) => {
-				return (
-					<div
-						key={file.name+i}
-						className="text-center items-center justify-center content-center">
-							<img
-								className="object-contain max-h-48 mx-auto"
-								src={file.preview}
-								alt={file.name}
-							/>
-					</div>
-				);
-				i++;
-			}) : [];
-			setThumbs(newThumbs);
+			setThumbs(getThumbs(files));
             setFiles(files)
 		}
 		
-	}, [error, files, value])
+	}, [error, files]);
+
+    const getThumbs = (images) => {
+        const thumbs = images ? images.map((file, i) => {
+            return (
+                <div
+                    key={file.name+i}
+                    className="text-center items-center justify-center content-center">
+                        <img
+                            className="object-contain max-h-48 mx-auto"
+                            src={file.preview}
+                            alt={file.name}
+                        />
+                </div>
+            );
+        }) : [];
+
+        return thumbs;
+    }
 
     const baseClasses = "relative px-4 inline-flex items-center py-2 border  text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500";
 

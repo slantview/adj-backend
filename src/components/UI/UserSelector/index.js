@@ -25,17 +25,22 @@ export const UserSelector = (props) => {
 
     const { loading, error, data, refetch } = useQuery(GET_ALL_USERS);
 	const [isLoading, setLoading] = useState(loading);
+    const [users, setUsers] = useState([]);
+    const [selectedUsers, setSelectedUsers] = useState([]);
+    const [selected, setSelected] = useState(selectUser);
 
-	useEffect(() => {
+    useEffect(() => {
 		if (!loading) {
 			setLoading(loading);
-			setUsers(_.sortBy(data?.users, 'first_name'));
+			setUsers(_.sortBy(_.differenceBy(data?.users, selectedUsers, 'id'), 'first_name'));
 		}
 	}, [loading, data]);
     
-    const [users, setUsers] = useState([]);
-    const [selectedUsers, setSelectedUsers] = useState(value);
-    const [selected, setSelected] = useState(selectUser);
+    useEffect(() => {
+        setSelectedUsers(value.map(u => { 
+            return u; 
+        }));
+    }, [value])
 
     const removeItem = (id) => {
         const user = _.find(selectedUsers, ['id', id]);
@@ -137,10 +142,10 @@ export const UserSelector = (props) => {
                         </button>
                     </span>
                 </div>
-                { selectedUsers.length > 0 &&
+                { selectedUsers?.length > 0 &&
                     <div className="border-b border-gray-200 mt-12 mb-12">
                         <ul className="divide-y divide-gray-200">
-                            {selectedUsers.map((person) => (
+                            {selectedUsers?.map((person) => (
                                 <li key={person.email} className="py-4 flex justify-between">
                                     <div className="flex">
                                         <div className="content-center justify-center">

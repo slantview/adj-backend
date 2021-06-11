@@ -117,30 +117,30 @@ const OrganizationForm = (props) => {
 					{ steps.map((step, stepIdx) => (
 						<li key={step.name} className="relative md:flex-1 md:flex">
 							{ step.status === 'complete' ? (
-								<Link to={step.href} className="group flex items-center w-full">
+								<a href="#" onClick={(e) => { setCurrentStep(stepIdx); e.preventDefault(); }} className="group flex items-center w-full">
 									<span className="px-6 py-4 flex items-center text-sm font-medium">
 									<span className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-blue-600 rounded-full group-hover:bg-blue-800">
 										<CheckIcon className="w-6 h-6 text-white" aria-hidden="true" />
 									</span>
 									<span className="ml-4 text-sm font-medium text-gray-900">{step.name}</span>
 									</span>
-								</Link>
+								</a>
 							) : step.status === 'current' ? (
-								<Link to={step.href} className="px-6 py-4 flex items-center text-sm font-medium" aria-current="step">
+								<a href="#" onClick={(e) => { setCurrentStep(stepIdx); e.preventDefault(); }} className="px-6 py-4 flex items-center text-sm font-medium" aria-current="step">
 									<span className="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-blue-600 rounded-full">
-									<span className="text-blue-600">{step.id}</span>
+										<span className="text-blue-600">{step.id}</span>
 									</span>
 									<span className="ml-4 text-sm font-bold text-blue-600">{step.name}</span>
-								</Link>
+								</a>
 							) : (
-								<Link to={step.href} className="group flex items-center">
+								<a href="#" onClick={(e) => { setCurrentStep(stepIdx); e.preventDefault(); }} className="group flex items-center">
 									<span className="px-6 py-4 flex items-center text-sm font-medium">
 									<span className="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
 										<span className="text-gray-500 group-hover:text-gray-900">{step.id}</span>
 									</span>
 									<span className="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">{step.name}</span>
 									</span>
-								</Link>
+								</a>
 							)}
 
 							{ stepIdx !== steps.length - 1 ? (
@@ -186,6 +186,7 @@ const OrganizationForm = (props) => {
 					patreon: organization?.patreon ?? '',
 					owners: organization?.owners ?? []
 				}}
+				enableReinitialize={true}
 				validationSchema={validationSchema}
 				onSubmit={handleSubmit ? handleSubmit : handleSubmitAdd}>
 					{(FormProps => (

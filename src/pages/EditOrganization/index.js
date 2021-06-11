@@ -1,17 +1,21 @@
-import { useMutation, useQuery } from '@apollo/client';
+import { useApolloClient, useMutation, useQuery } from '@apollo/client';
 import _ from 'lodash';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router';
 
 import Breadcrumbs from 'components/Breadcrumbs';
 import Loading from 'components/Loading';
 import OrganizationForm from 'components/OrganizationForm';
 import Content from 'layout/Content';
 import { GET_ORGANIZATION, UPDATE_ORGANIZATION } from 'queries/organizations';
+import { NotificationContext } from 'providers/NotificationProvider';
 
 const EditOrganization = (props) => {
     // @ts-ignore
     const { id } = useParams();
+    const client = useApolloClient();
+    const history = useHistory();
+    const notify = useContext(NotificationContext).notify;
 
     const { loading, error, data, refetch } = useQuery(
 		GET_ORGANIZATION,
@@ -67,8 +71,16 @@ const EditOrganization = (props) => {
                     data: newOrganization
                 }
             })
-            .then(resp => {
-                console.log(resp);
+            .then(result => {
+                const updatedOrganization = result.data.updateOrganization;
+                client.resetStore()
+                    .then(() => {
+                        notify({
+                            type: 'success',
+                            message: "Successfully updated organization: " + updatedOrganization.email
+                        });
+                        history.push('/organizations/view/' + updatedOrganization.id, { refresh: true });
+                    });
             })
             .catch(err => {
                 console.error(err);

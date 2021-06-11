@@ -69,7 +69,10 @@ export const GET_ORGANIZATION = gql`
             name
             email
             logo {
+                public_url
                 file_name
+                file_extension
+                content_type
             }
             about
             website
@@ -100,39 +103,37 @@ export const GET_ORGANIZATION = gql`
 `;
 
 export const UPDATE_ORGANIZATION = gql`
-    mutation($id:ID!, $data: editOrganizationInput) {
+    mutation($id:ID!, $data: OrganizationInput!) {
         updateOrganization(id: $id, input: $data) {
-            organization {
+            id
+            name
+            email
+            logo {
+                file_name
+            }
+            about
+            website
+            facebook
+            instagram
+            twitch
+            twitter
+            youtube
+            patreon
+            discord
+            address_line_1
+            address_line_2
+            city
+            state
+            postal_code
+            created_at
+            updated_at
+            deleted_at
+            suspended_at
+            owners {
                 id
-                name
+                first_name
+                last_name
                 email
-                logo {
-                    file_name
-                }
-                about
-                website
-                facebook
-                instagram
-                twitch
-                twitter
-                youtube
-                patreon
-                discord
-                address_line_1
-                address_line_2
-                city
-                state
-                postal_code
-                created_at
-                updated_at
-                deleted_at
-                suspended_at
-                owners {
-                    id
-                    first_name
-                    last_name
-                    email
-                }
             }
         }
     }

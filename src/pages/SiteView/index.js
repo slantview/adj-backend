@@ -1,9 +1,10 @@
-import { useQuery } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { Menu, Popover, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, UserCircleIcon, XIcon } from '@heroicons/react/outline'
-import { ArrowNarrowLeftIcon, CheckIcon, HomeIcon, PaperClipIcon, QuestionMarkCircleIcon, SearchIcon, ThumbUpIcon, UserIcon } from '@heroicons/react/solid'
+import { ArrowNarrowLeftIcon, CheckIcon, CogIcon, HomeIcon, PaperClipIcon, QuestionMarkCircleIcon, SearchIcon, ThumbUpIcon, UserIcon } from '@heroicons/react/solid'
+import _ from 'lodash';
 import { DateTime } from "luxon";
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
 
 import Breadcrumbs from 'components/Breadcrumbs'
@@ -11,38 +12,39 @@ import Loading from 'components/Loading'
 import SocialIcons from 'components/SocialIcons'
 import Timeline from 'components/Timeline'
 import UserCardList from 'components/UI/UserCardList'
-import { GET_SITE } from 'queries/sites';
+import { NotificationContext } from 'providers/NotificationProvider';
+import { BUILD_SITE, GET_SITE } from 'queries/sites';
 
 const eventTypes = {
-  applied: { icon: UserIcon, bgColorClass: 'bg-gray-400' },
-  advanced: { icon: ThumbUpIcon, bgColorClass: 'bg-blue-500' },
-  completed: { icon: CheckIcon, bgColorClass: 'bg-green-500' },
+  created_user: { url_prefix: '/users/view', icon: UserIcon, bgColorClass: 'bg-green-500' },
+  created_site: { url_prefix: '/sites/view', icon: CogIcon, bgColorClass: 'bg-green-500' },
+  build: { url_prefix: '/sites/view', icon: CogIcon, bgColorClass: 'bg-green-500' },
 }
-const timeline = [
-  {
-    id: 1,
-    type: eventTypes.completed,
-    content: 'Created Site',
-    target: 'BeaconsGG',
-    date: 'Sep 20',
-    datetime: '2020-09-20',
-  },
-  {
-    id: 2,
-    type: eventTypes.completed,
-    content: 'Created Site',
-    target: 'smashlegion.beacons.gg',
-    date: 'Sep 22',
-    datetime: '2020-09-22',
-  },
-  {
-    id: 3,
-    type: eventTypes.completed,
-    content: 'Added Team Member',
-    target: 'Steve Rude',
-    date: 'Sep 28',
-    datetime: '2020-09-28',
-  },
+// const timeline = [
+//   {
+//     id: 1,
+//     type: eventTypes.completed,
+//     content: 'Created Site',
+//     target: 'BeaconsGG',
+//     date: 'Sep 20',
+//     datetime: '2020-09-20',
+//   },
+//   {
+//     id: 2,
+//     type: eventTypes.completed,
+//     content: 'Created Site',
+//     target: 'smashlegion.beacons.gg',
+//     date: 'Sep 22',
+//     datetime: '2020-09-22',
+//   },
+//   {
+//     id: 3,
+//     type: eventTypes.completed,
+//     content: 'Added Team Member',
+//     target: 'Steve Rude',
+//     date: 'Sep 28',
+//     datetime: '2020-09-28',
+//   },
 //   {
 //     id: 4,
 //     type: eventTypes.advanced,
@@ -59,7 +61,7 @@ const timeline = [
 //     date: 'Oct 4',
 //     datetime: '2020-10-04',
 //   },
-]
+// ]
 const comments = [
 //   {
 //     id: 1,
@@ -85,12 +87,66 @@ const comments = [
 //     body:
 //       'Expedita consequatur sit ea voluptas quo ipsam recusandae. Ab sint et voluptatem repudiandae voluptatem et eveniet. Nihil quas consequatur autem. Perferendis rerum et.',
 //   },
-]
+];
+
+const statusStyles = {
+	live: 'bg-green-100 text-green-800',
+	ready: 'bg-green-100 text-green-800',
+	prelive: 'bg-yellow-100 text-yellow-800',
+    suspended: 'bg-red-100 text-red-800',
+	accepted:  'bg-green-100 text-green-800',
+	cancelled: 'bg-gray-100 text-gray-800',
+    deleted: 'bg-red-100 text-red-800',
+	error: 'bg-red-100 text-red-800',
+    initializing_content: 'bg-yellow-100 text-yellow-800',
+    build: 'bg-green-100 text-green-800',
+}
+
+const formatStateName = (name, tense) => {
+	let formattedName = "";
+	switch (name) {
+		case "accepted": 
+			formattedName = "Accepted";
+			break;
+		case "created": 
+			formattedName = "Created";
+			break;
+		case "cms_creating": 
+			formattedName = "Creating CMS";
+			break;
+		case "initializing_content": 
+			formattedName = "Initializing Content";
+			break;
+		case "initializing_pages": 
+			formattedName = "Initializing Pages";
+			break;
+		case "initializing_metadata": 
+			formattedName = "Initializing Metadata";
+			break;
+		case "building_site": 
+			formattedName = "Building Site";
+			break;
+		case "ready": 
+			formattedName = "Ready";
+			break;
+		case "error": 
+			formattedName = "Error";
+			break;
+		default:
+			formattedName = "Unknown";
+	}
+	return formattedName;
+}
+
+const classNames = (...classes) => {
+	return classes.filter(Boolean).join(' ')
+};
 
 const SiteView = (props) => {
     const history = useHistory();
     // @ts-ignore
     const { id } = useParams();
+    const notify = useContext(NotificationContext).notify;
     const { loading, error, data, refetch } = useQuery(
 		GET_SITE,
 		{ 
@@ -99,21 +155,73 @@ const SiteView = (props) => {
             },
 			notifyOnNetworkStatusChange: true 
 		});
+    const [buildSite] = useMutation(BUILD_SITE)
 	const [isLoading, setLoading] = useState(loading);
 	const [siteData, setSiteData] = useState([]);
-    
+    const [timeline, setTimeline] = useState([]);
+
     const pages = [
         { name: 'Sites', href: '/sites', current: false },
         // @ts-ignore
-        { name: siteData?.name, href: window.location.pathname, current: true },
+        { name: siteData?.name, href: '/sites/view/' + id, current: true },
     ]
+
+    const addTimelineEvent = (event) => {
+        timeline.push(event);
+        setTimeline(_.sortBy(timeline, function(event) {
+            return new Date(event.datetime);
+        }));
+    }
 
 	useEffect(() => {
 		if (!loading) {
 			setLoading(loading);
 			setSiteData(data?.site);
+            addTimelineEvent({
+                id: data?.site.id,
+                type: eventTypes.created_site,
+                content: 'Created Site',
+                target: data?.site.domain,
+                date: DateTime.fromISO(data?.site.created_at).toLocaleString(),
+                datetime: data?.site.created_at,
+            });
+            addTimelineEvent({
+                id: data?.site.id,
+                type: eventTypes.build,
+                content: 'Site Updated',
+                target: data?.site.domain,
+                date: DateTime.fromISO(data?.site?.updated_at).toLocaleString(),
+                datetime: data?.site?.updated_at,
+            });
+            data?.site.owners.forEach(owner => {
+                addTimelineEvent({
+                    id: owner.id,
+                    type: eventTypes.created_user,
+                    content: 'Created User',
+                    target: `${owner.first_name} ${owner.last_name}`,
+                    date: DateTime.fromISO(owner.created_at).toLocaleString(),
+                    datetime: owner.created_at,
+                });
+            });
 		}
 	}, [loading, data]);
+
+
+    const handleBuildSite = (e) => {
+        buildSite({
+            variables: {
+                id: id,
+            }
+        })
+        .then(result => {
+            const siteBuilt = result.data.buildSite;
+            notify({
+                type: 'success',
+                message: "Successfully started build for: " + siteBuilt.name
+            });
+        })
+        e.preventDefault();
+    }
 
 	if (isLoading) {
 		return (<Loading />);
@@ -137,15 +245,25 @@ const SiteView = (props) => {
                         </div>
                         <div>
                             {/* @ts-ignore */}
-                            <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">{siteData.domain}</h1>
+                            <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">{siteData?.domain}</h1>
                             {/* <p className="text-xs font-medium text-gray-500">b1e2e795-faf5-4923-8f46-77ac76b49837</p> */}
                             <p className="mt-1 text-sm font-medium text-gray-500">
                                 {/* @ts-ignore */}
-                                Created on <time dateTime={siteData.created_at}>{DateTime.fromISO(siteData.created_at).toRFC2822()}</time>
+                                Created on <time dateTime={siteData?.created_at}>{DateTime.fromISO(siteData?.created_at).toRFC2822()}</time>
                             </p>
                         </div>
                     </div>
                     <div className="lg:mr-4 mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
+                        <a
+                            onClick={handleBuildSite}
+                            href="#">
+                                <button
+                                    type="button"
+                                    className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-gray-900 bg-gray-50 hover:text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+                                >
+                                    Build Site
+                                </button>
+                        </a>
                         <Link
                             to={"/sites/edit/" + id}>
                                 <button
@@ -188,25 +306,35 @@ const SiteView = (props) => {
                                             {/* @ts-ignore */}
                                             <dd className="mt-1 text-sm text-gray-900">
                                                 {/* @ts-ignore */}
-                                                <Link to={'/organizations/view/' + siteData.organization.id} className="hover:text-blue-500">
-                                                    {/* @ts-ignore */}
-                                                    {siteData.organization.name}
-                                                </Link>
+                                                { siteData?.organization &&
+                                                    <>
+                                                        {/* @ts-ignore */}
+                                                        <Link to={'/organizations/view/' + siteData?.organization?.id} className="hover:text-blue-500">
+                                                            {/* @ts-ignore */}
+                                                            {siteData?.organization?.name}
+                                                        </Link>
+                                                    </>
+                                                }
                                             </dd>
                                         </div>
-                                        {/* <div className="sm:col-span-1">
-                                            <dt className="text-sm font-medium text-gray-500">Salary expectation</dt>
-                                            <dd className="mt-1 text-sm text-gray-900">$120,000</dd>
+                                        <div className="sm:col-span-1">
+                                            <dt className="text-sm font-medium text-gray-500">Provisioning State</dt>
+                                            <dd className="mt-1 text-sm text-gray-900">
+                                                <span className={classNames(
+                                                    statusStyles[siteData?.provisioning_state],
+                                                    'inline-flex items-center px-2.5 py-0.5 rounded capitalize')}>
+                                                        {formatStateName(siteData?.provisioning_state?.toLowerCase())}
+                                                </span>
+                                            </dd>
                                         </div>
                                         <div className="sm:col-span-1">
-                                            <dt className="text-sm font-medium text-gray-500">Phone</dt>
-                                            <dd className="mt-1 text-sm text-gray-900">+1 555-555-5555</dd>
-                                        </div> */}
-                                        <div className="sm:col-span-2">
-                                            <dt className="text-sm font-medium text-gray-500">About</dt>
+                                            <dt className="text-sm font-medium text-gray-500">Status</dt>
                                             <dd className="mt-1 text-sm text-gray-900">
-                                                {/* @ts-ignore */}
-                                                {siteData.about}
+                                                <span className={classNames(
+                                                        statusStyles[siteData?.state],
+                                                        'inline-flex items-center px-2.5 py-0.5 rounded capitalize')}>
+                                                            {siteData?.state}
+                                                    </span>
                                             </dd>
                                         </div>
                                         {/* Team member list */}
@@ -214,7 +342,7 @@ const SiteView = (props) => {
                                             <h2 className="text-sm font-medium text-gray-500">Site Owners</h2>
                                             <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
                                                 {/* @ts-ignore */}
-                                                <UserCardList users={siteData.owners} />
+                                                <UserCardList users={siteData?.owners} />
                                             </div>
                                         </div>
                                         <div className="sm:col-span-2">

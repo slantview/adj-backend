@@ -18,7 +18,8 @@ const selectOrg = {name: "Select Organization", id: 0};
 export const OrganizationSelector = (props) => {
     const {
         name,
-        setFieldValue
+        setFieldValue,
+        value
     } = props;
 
     const { loading, error, data, refetch } = useQuery(GET_ALL_ORGANIZATIONS);
@@ -28,6 +29,7 @@ export const OrganizationSelector = (props) => {
 		if (!loading) {
 			setLoading(loading);
 			setOrganizations(data?.organizations);
+            setSelected(_.first(data?.organizations?.filter(o => o.id === value)));
 		}
 	}, [loading, data]);
     

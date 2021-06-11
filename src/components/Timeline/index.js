@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const classNames = (...classes) => {
     return classes.filter(Boolean).join(' ')
@@ -38,9 +39,9 @@ const Timeline = (props) => {
                                         <div>
                                             <p className="text-sm text-gray-500">
                                                 {item.content}{' '}
-                                                <a href="#" className="font-medium text-gray-900">
+                                                <Link to={item.type.url_prefix + '/' + item.id} className="font-medium text-gray-900 hover:text-blue-500">
                                                     {item.target}
-                                                </a>
+                                                </Link>
                                             </p>
                                         </div>
                                         <div className="text-right text-sm whitespace-nowrap text-gray-500">

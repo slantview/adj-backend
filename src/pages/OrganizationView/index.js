@@ -1,48 +1,47 @@
-import { useQuery } from '@apollo/client'
-import { Menu, Popover, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, UserCircleIcon, XIcon } from '@heroicons/react/outline'
-import { ArrowNarrowLeftIcon, CheckIcon, HomeIcon, PaperClipIcon, QuestionMarkCircleIcon, SearchIcon, ThumbUpIcon, UserIcon } from '@heroicons/react/solid'
+import { useQuery } from '@apollo/client';
+import { CheckIcon, CogIcon, UserIcon } from '@heroicons/react/solid';
+import _ from 'lodash';
 import { DateTime } from "luxon";
-import React, { Fragment, useEffect, useState } from 'react'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
-import Breadcrumbs from 'components/Breadcrumbs'
-import Loading from 'components/Loading'
-import SocialIcons from 'components/SocialIcons'
-import Timeline from 'components/Timeline'
-import UserCardList from 'components/UI/UserCardList'
-import { GET_ORGANIZATION } from 'queries/organizations'
+import Breadcrumbs from 'components/Breadcrumbs';
+import Loading from 'components/Loading';
+import SocialIcons from 'components/SocialIcons';
+import Timeline from 'components/Timeline';
+import UserCardList from 'components/UI/UserCardList';
+import { GET_ORGANIZATION } from 'queries/organizations';
 
 const eventTypes = {
-  applied: { icon: UserIcon, bgColorClass: 'bg-gray-400' },
-  advanced: { icon: ThumbUpIcon, bgColorClass: 'bg-blue-500' },
-  completed: { icon: CheckIcon, bgColorClass: 'bg-green-500' },
+    created_user: { url_prefix: '/users/view', icon: UserIcon, bgColorClass: 'bg-green-500' },
+    created_site: { url_prefix: '/sites/view', icon: CogIcon, bgColorClass: 'bg-green-500' },
+    created_organization: { url_prefix: '/organizations/view', icon: CogIcon, bgColorClass: 'bg-green-500' },
 }
-const timeline = [
-  {
-    id: 1,
-    type: eventTypes.completed,
-    content: 'Created Organization',
-    target: 'BeaconsGG',
-    date: 'Sep 20',
-    datetime: '2020-09-20',
-  },
-  {
-    id: 2,
-    type: eventTypes.completed,
-    content: 'Created Site',
-    target: 'smashlegion.beacons.gg',
-    date: 'Sep 22',
-    datetime: '2020-09-22',
-  },
-  {
-    id: 3,
-    type: eventTypes.completed,
-    content: 'Added Team Member',
-    target: 'Steve Rude',
-    date: 'Sep 28',
-    datetime: '2020-09-28',
-  },
+// const timeline = [
+//   {
+//     id: 1,
+//     type: eventTypes.completed,
+//     content: 'Created Organization',
+//     target: 'BeaconsGG',
+//     date: 'Sep 20',
+//     datetime: '2020-09-20',
+//   },
+//   {
+//     id: 2,
+//     type: eventTypes.completed,
+//     content: 'Created Site',
+//     target: 'smashlegion.beacons.gg',
+//     date: 'Sep 22',
+//     datetime: '2020-09-22',
+//   },
+//   {
+//     id: 3,
+//     type: eventTypes.completed,
+//     content: 'Added Team Member',
+//     target: 'Steve Rude',
+//     date: 'Sep 28',
+//     datetime: '2020-09-28',
+//   },
 //   {
 //     id: 4,
 //     type: eventTypes.advanced,
@@ -59,7 +58,7 @@ const timeline = [
 //     date: 'Oct 4',
 //     datetime: '2020-10-04',
 //   },
-]
+// ]
 const comments = [
 //   {
 //     id: 1,
@@ -101,17 +100,53 @@ const OrganizationView = (props) => {
 		});
 	const [isLoading, setLoading] = useState(loading);
 	const [organizationData, setOrganizationData] = useState([]);
-    
+    const [timeline, setTimeline] = useState([]);
     const pages = [
         { name: 'Organizations', href: '/organizations', current: false },
         // @ts-ignore
         { name: organizationData.name, href: window.location.pathname, current: true },
     ]
 
+    const addTimelineEvent = (event) => {
+        timeline.push(event);
+        setTimeline(_.sortBy(timeline, function(event) {
+            return new Date(event.datetime);
+        }));
+    }
+
 	useEffect(() => {
 		if (!loading) {
 			setLoading(loading);
 			setOrganizationData(data?.organization);
+            addTimelineEvent({
+                id: data?.organization.id,
+                type: eventTypes.created_organization,
+                content: 'Created Organization',
+                target: data?.organization.name,
+                date: DateTime.fromISO(data?.organization.created_at).toLocaleString(),
+                datetime: DateTime.fromISO(data?.organization.created_at).toLocaleString(),
+            });
+            data?.organization.owners.forEach(owner => {
+                addTimelineEvent({
+                    id: owner.id,
+                    type: eventTypes.created_user,
+                    content: 'Created User',
+                    target: `${owner.first_name} ${owner.last_name}`,
+                    date: DateTime.fromISO(owner.created_at).toLocaleString(),
+                    datetime: owner.created_at,
+                });
+            });
+            data?.organization.sites.forEach(site => {
+                addTimelineEvent({
+                    id: site.id,
+                    type: eventTypes.created_site,
+                    content: 'Created Site',
+                    target: `${site.domain}`,
+                    date: DateTime.fromISO(site.created_at).toLocaleString(),
+                    datetime: site.created_at,
+                });
+            });
+            
 		}
 	}, [loading, data]);
 

@@ -23,6 +23,19 @@ export const GET_ALL_ORGANIZATIONS = gql`
             city
             state
             postal_code
+            owners {
+                id
+                first_name
+                last_name
+                email
+                created_at
+            }
+            sites {
+                id
+                name
+                domain
+                created_at
+            }
             created_at
             updated_at
             deleted_at
@@ -97,6 +110,13 @@ export const GET_ORGANIZATION = gql`
                 first_name
                 last_name
                 email
+                created_at
+            }
+            sites {
+                id
+                name
+                domain
+                created_at
             }
         }
     }

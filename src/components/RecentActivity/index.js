@@ -16,7 +16,8 @@ const statusStyles = {
 	ready: 'bg-green-100 text-green-800',
 	processing: 'bg-yellow-100 text-yellow-800',
 	error: 'bg-red-100 text-red-800',
-	cancelled: 'bg-gray-100 text-gray-800'
+	cancelled: 'bg-gray-100 text-gray-800',
+	suspended: 'bg-red-100 text-red-800'
 }
 
 const formatStateName = (name, tense) => {
@@ -205,7 +206,7 @@ const RecentActivity = (props) => {
 								<td className="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
 									<div className="flex flex-col">
 										<div>
-											<Link to={"/provisioning/log/" + log.id} className="group inline-flex space-x-2 truncate text-lg">
+											<Link to={"/sites/view/" + log.site.id} className="group inline-flex space-x-2 truncate text-lg">
 												
 												{ log.type === "provision" &&
 													<CogIcon 
@@ -265,7 +266,7 @@ const RecentActivity = (props) => {
 								<td className="px-6 py-8 hidden whitespace-nowrap text-gray-500 md:block"> 
 									<span className={classNames(
 										log.success ? "text-green-800 bg-green-200" : "text-red-800 bg-red-200",
-										statusStyles[log.state],
+										statusStyles[log.state.toLowerCase()],
 										'font-bold',
 										'inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium capitalize bg-gray-100 text-gray-800')}>
 											{log.state.replace('_', ' ')}

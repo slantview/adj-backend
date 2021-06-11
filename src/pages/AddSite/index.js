@@ -83,7 +83,7 @@ const AddSite = (props) => {
                                     </div>
                                 ):(
                                     <Form id="site-add-form"> 
-                                        <SiteForm {...FormProps} />
+                                        <SiteForm newSite={true} {...FormProps} />
                                     </Form>
                                 )}
                             </>

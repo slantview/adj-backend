@@ -18,6 +18,7 @@ function classNames(...classes) {
 
 const SiteForm = (props) => {
     const {
+        newSite,
         handleSubmit,
         setFieldValue,
         values,
@@ -60,7 +61,7 @@ const SiteForm = (props) => {
                         State
                         <div>
                             <span className="sm:mt-px sm:pt-2 text-xs font-normal">
-                                This will be the state after creation. Can be changed later.
+                                This is the state of the site, pre-live should be used for sites that don't want to go public yet.
                             </span>
                         </div>
                     </label>
@@ -119,6 +120,7 @@ const SiteForm = (props) => {
                         name="organization_id"
                         handleSubmit={handleSubmit}
                         setFieldValue={setFieldValue}
+                        value={values.organization_id}
                     />
                 </div>
 
@@ -127,6 +129,7 @@ const SiteForm = (props) => {
                         name="owners"
                         handleSubmit={handleSubmit}
                         setFieldValue={setFieldValue}
+                        value={values.owners ? values.owners : []}
                     />
                 </div>
                 
@@ -137,7 +140,7 @@ const SiteForm = (props) => {
                         type="button"
                         className="mx-2 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-800 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
                     >
-                        Create Site
+                        { newSite ? "Create Site" : "Save" }
                     </button>
                 </div>
             </div>

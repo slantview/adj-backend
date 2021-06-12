@@ -321,8 +321,10 @@ const SiteView = (props) => {
                                             <dt className="text-sm font-medium text-gray-500">Provisioning State</dt>
                                             <dd className="mt-1 text-sm text-gray-900">
                                                 <span className={classNames(
+                                                    // @ts-ignore
                                                     statusStyles[siteData?.provisioning_state],
                                                     'inline-flex items-center px-2.5 py-0.5 rounded capitalize')}>
+                                                        {/* @ts-ignore */}
                                                         {formatStateName(siteData?.provisioning_state?.toLowerCase())}
                                                 </span>
                                             </dd>
@@ -331,8 +333,10 @@ const SiteView = (props) => {
                                             <dt className="text-sm font-medium text-gray-500">Status</dt>
                                             <dd className="mt-1 text-sm text-gray-900">
                                                 <span className={classNames(
+                                                        // @ts-ignore
                                                         statusStyles[siteData?.state],
                                                         'inline-flex items-center px-2.5 py-0.5 rounded capitalize')}>
+                                                            {/* @ts-ignore */}
                                                             {siteData?.state}
                                                     </span>
                                             </dd>

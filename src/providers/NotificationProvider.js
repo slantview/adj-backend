@@ -1,24 +1,49 @@
-import { Snackbar } from "smelte";
 import React, { Component, createContext } from "react";
+import SnackbarProvider, { useSnackbar } from 'react-simple-snackbar';
 
 export const NotificationContext = createContext({ 
     notify: (notification) => {}, 
 });
 
+
 class NotificationProvider extends Component {
     state = {
         open: false,
         type: "",
-        message: ""
+        message: "",
+        textClasses: "",
+        bgClasses: ""
     };
 
     notify = (notification) => {
+        switch (notification.type) {
+            case 'error':
+                this.setState({
+                    bgClasses: "bg-red-600",
+                    textClasses: "text-red-200"
+                });
+            case 'success':
+                this.setState({
+                    bgClasses: "bg-green-600",
+                    textClasses: "text-green-100"
+                });
+            default:
+                this.setState({
+                    bgClasses: "bg-blue-600",
+                    textClasses: "text-blue-100"
+                });
+        }
+
         this.setState({
-            open: true,
-            type: notification.type,
-            message: notification.message
-        })
-    }
+            open: true
+        });
+
+        setTimeout(() => {
+            this.setState({
+                open: false
+            })
+        }, 5000);
+    };
 
     onClose = () => {
         this.setState({
@@ -31,21 +56,11 @@ class NotificationProvider extends Component {
         return (
             <NotificationContext.Provider value={{notify: this.notify}}>
                 {this.props.children}
-                {/* <Snackbar
-                    anchorOrigin={{vertical: 'bottom', horizontal: 'center' }}
-                    key="notification"
-                    autoHideDuration={5000}
-                    open={this.state.open}
-                    classes={{ root: 'toastr-' + this.state.type }}
-                    message={this.state.message}
-                    onClose={this.onClose}
-                /> */}
-                {/* <Snackbar
-                    color={this.state.type}
-                    timeout={5000}
-                    center>
-                        <div>{this.state.message}</div>
-                </Snackbar> */}
+                <div className={"border-2 absolute bottom-0 mx-auto w-48 h-10 z-50 " + this.state.bgClasses}>
+                    <span className={this.state.textClasses}>
+                        {this.state.message}
+                    </span>
+                </div>
             </NotificationContext.Provider>
         );
     }

@@ -17,30 +17,34 @@ class NotificationProvider extends Component {
 
     notify = (notification) => {
         switch (notification.type) {
-            case 'error':
+            case 'danger':
                 this.setState({
                     bgClasses: "bg-red-600",
-                    textClasses: "text-red-200"
+                    textClasses: "text-white",
+                    open: true,
+                    message: notification.message
                 });
             case 'success':
                 this.setState({
                     bgClasses: "bg-green-600",
-                    textClasses: "text-green-100"
+                    textClasses: "text-white",
+                    open: true,
+                    message: notification.message
                 });
             default:
                 this.setState({
-                    bgClasses: "bg-blue-600",
-                    textClasses: "text-blue-100"
+                    bgClasses: "bg-green-600",
+                    textClasses: "text-white",
+                    open: true,
+                    message: notification.message
                 });
         }
 
-        this.setState({
-            open: true
-        });
-
         const timeout = setTimeout(() => {
             this.setState({
-                open: false
+                open: false,
+                message: "",
+                type: ""
             });
             clearTimeout(timeout);
         }, 5000);
@@ -57,11 +61,13 @@ class NotificationProvider extends Component {
         return (
             <NotificationContext.Provider value={{notify: this.notify}}>
                 {this.props.children}
-                <div className={"border-2 absolute bottom-0 mx-auto w-48 h-10 z-50 " + this.state.bgClasses}>
-                    <span className={this.state.textClasses}>
-                        {this.state.message}
-                    </span>
-                </div>
+                { this.state.open &&
+                    <div className={"-mr-24 px-6 pt-2 py-6 text-sm right-1/2 fixed bottom-1 mx-auto min-w-24 max-w-96 h-10 z-50 rounded " + this.state.bgClasses}>
+                        <span className={this.state.textClasses}>
+                            {this.state.message}
+                        </span>
+                    </div>
+                }
             </NotificationContext.Provider>
         );
     }

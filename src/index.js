@@ -7,6 +7,7 @@ import AddOrganization from 'pages/AddOrganization';
 import AddSite from 'pages/AddSite';
 import AddUser from 'pages/AddUser';
 import EditOrganization from 'pages/EditOrganization';
+import EditSite from 'pages/EditSite';
 import OrganizationView from 'pages/OrganizationView';
 import SettingsPage from 'pages/SettingsPage';
 import SiteView from 'pages/SiteView';
@@ -23,7 +24,6 @@ import Users from './pages/Users';
 import NotificationProvider from './providers/NotificationProvider';
 
 import './assets/styles/index.css';
-import EditSite from 'pages/EditSite';
 
 const pageVariants = {
 	initial: {

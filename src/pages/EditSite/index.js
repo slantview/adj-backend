@@ -44,7 +44,7 @@ const EditSite = (props) => {
     const initialData = {
         name: siteData?.name,
         state: siteData?.state,
-        organization_id: siteData?.organization.id,
+        organization_id: siteData?.organization?.id,
         owners: siteData?.owners
     }
 

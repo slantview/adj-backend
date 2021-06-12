@@ -1,7 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { HomeIcon } from '@heroicons/react/solid';
-import { Link } from 'react-router-dom';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Breadcrumbs = (props) => {
 	const {

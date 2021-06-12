@@ -56,12 +56,12 @@ export const OrganizationSelector = (props) => {
                 </p>
                 <div className="flex">
                     <div className="flex-grow mt-2">
-                        <Listbox value={selected.name} onChange={handleChange}>
+                        <Listbox value={selected?.name} onChange={handleChange}>
                             {({ open }) => (
                                 <>
                                     <div className="mt-1 relative">
                                         <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                            <span className="block truncate">{selected.name}</span>
+                                            <span className="block truncate">{selected?.name}</span>
                                             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                                 <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                                             </span>

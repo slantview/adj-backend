@@ -38,10 +38,11 @@ class NotificationProvider extends Component {
             open: true
         });
 
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
             this.setState({
                 open: false
-            })
+            });
+            clearTimeout(timeout);
         }, 5000);
     };
 

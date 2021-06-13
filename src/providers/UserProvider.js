@@ -29,7 +29,6 @@ class UserProvider extends Component {
         const auth = firebase.auth();
 
         auth.onAuthStateChanged(async userAuth => {
-            
             if (userAuth === null) {
                 window.location.pathname = '/login';
                 return;
@@ -37,6 +36,10 @@ class UserProvider extends Component {
             const token = await userAuth.getIdToken();
             const { claims, expirationTime } = await userAuth.getIdTokenResult();
             
+            if (!claims.admin) {
+                window.location.pathname = '/login';
+            }
+
             this.setState({ 
                 user: userAuth, 
                 token: token, 
@@ -68,7 +71,7 @@ class UserProvider extends Component {
 
     render() {
 
-        if (!this.state.user) {
+        if (!this.state.user || !this.state.admin) {
             return (
                 <div className="text-center min-h-screen">
                     <Loading showText={true} />

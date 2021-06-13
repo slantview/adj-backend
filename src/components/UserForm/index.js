@@ -40,7 +40,8 @@ const UserForm = (props) => {
         handleSubmit,
         setFieldValue,
         values,
-        errors
+        errors,
+        newUser
     } = props;
 
     const errorClasses = "border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500";
@@ -200,9 +201,9 @@ const UserForm = (props) => {
                     <button
                         onClick={handleSubmit}
                         type="button"
-                        className="mx-2 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-800 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
+                        className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
                     >
-                        Create User
+                        { newUser ? "Create User" : "Save" }
                     </button>
                 </div>
             </div>

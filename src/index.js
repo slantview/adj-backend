@@ -24,6 +24,8 @@ import Users from './pages/Users';
 import NotificationProvider from './providers/NotificationProvider';
 
 import './assets/styles/index.css';
+import UserEdit from 'pages/UserEdit';
+import UserView from 'pages/UserView';
 
 const pageVariants = {
 	initial: {
@@ -69,6 +71,8 @@ ReactDOM.render(
 
 									<Route exact path="/users"><Users /></Route>
 									<Route exact path="/users/new"><AddUser /></Route>
+									<Route exact path="/users/view/:id"><UserView /></Route>
+									<Route exact path="/users/edit/:id"><UserEdit /></Route>
 									
 									<Route exact path="/games"><Games /></Route>
 

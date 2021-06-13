@@ -180,7 +180,7 @@ const UsersTable = (props) => {
 	}, [users])
 	
     return (
-        <div className="mb-4 mt-4">
+        <div className="mb-4 mt-8">
             <div className="mb-6 mx-2 md:mx-0">
                 <div className="mt-1 relative rounded-md shadow-sm">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-xl">
@@ -190,7 +190,7 @@ const UsersTable = (props) => {
                         type="text"
                         name="email"
                         id="email"
-                        className="p-4 focus:ring-gray-300 focus:border-gray-300 block w-full pl-10 sm:text-sm border-gray-300 rounded-lg text-xl"
+                        className="p-4 focus:ring-gray-300 focus:border-gray-300 block w-full pl-10 sm:text-sm border-gray-300 rounded-lg text-sm"
                         placeholder="Search"
                     />
                 </div>
@@ -200,7 +200,7 @@ const UsersTable = (props) => {
 				<ul className="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
 					{ usersDisplayData?.slice(page*10, (page*10)+10).map((user) => (
 						<li key={user.id}>
-							<Link to={'/users/view/' + user.href} className="block px-4 py-4 bg-white hover:bg-gray-50">
+							<Link to={'/users/view/' + user.id} className="block px-4 py-4 bg-white hover:bg-gray-50">
 								<span className="flex items-center space-x-4">
 									<span className="flex-1 flex flex-col truncate">
 										<span className="flex-1 flex">

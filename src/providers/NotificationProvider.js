@@ -26,14 +26,14 @@ class NotificationProvider extends Component {
                 });
             case 'success':
                 this.setState({
-                    bgClasses: "bg-green-600",
+                    bgClasses: "bg-green-400",
                     textClasses: "text-white",
                     open: true,
                     message: notification.message
                 });
             default:
                 this.setState({
-                    bgClasses: "bg-green-600",
+                    bgClasses: "bg-green-400",
                     textClasses: "text-white",
                     open: true,
                     message: notification.message
@@ -62,11 +62,14 @@ class NotificationProvider extends Component {
             <NotificationContext.Provider value={{notify: this.notify}}>
                 {this.props.children}
                 { this.state.open &&
-                    <div className={"-mr-24 px-6 pt-2 py-6 text-sm right-1/2 fixed bottom-1 mx-auto min-w-24 max-w-96 h-10 z-50 rounded " + this.state.bgClasses}>
-                        <span className={this.state.textClasses}>
-                            {this.state.message}
-                        </span>
+                    <div className="flex w-full fixed bottom-2 items-center justify-center ">
+                        <div className={"flex px-6 pt-2 py-6 text-sm  min-w-24 max-w-96 h-10 z-50 rounded " + this.state.bgClasses}>
+                            <span className={"" + this.state.textClasses}>
+                                {this.state.message}
+                            </span>
+                        </div>
                     </div>
+                    
                 }
             </NotificationContext.Provider>
         );

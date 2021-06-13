@@ -158,18 +158,8 @@ const OrganizationView = (props) => {
             <Breadcrumbs pages={pages} />
             <main className="py-6">
                 {/* Page header */}
-                <div className="max-w-3xl mx-auto px-4 md:flex md:items-center md:justify-between  lg:max-w-7xl ">
+                <div className="max-w-3xl md:mx-auto px-4 md:flex md:items-center md:justify-between lg:max-w-7xl ">
                     <div className="flex items-center space-x-5">
-                        <div className="flex-shrink-0">
-                            <div className="relative">
-                                {/* <img
-                                className="h-16 w-16 rounded-full"
-                                src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80"
-                                alt=""
-                                />
-                                <span className="absolute inset-0 shadow-inner rounded-full" aria-hidden="true" /> */}
-                            </div>
-                        </div>
                         <div>
                             {/* @ts-ignore */}
                             <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">{organizationData.name}</h1>
@@ -180,12 +170,12 @@ const OrganizationView = (props) => {
                             </p>
                         </div>
                     </div>
-                    <div className="lg:mr-4 mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
+                    <div className="w-full lg:mr-4 mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
                         <Link
                             to={"/organizations/edit/" + id}>
                                 <button
                                     type="button"
-                                    className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+                                    className="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
                                 >
                                     Edit Organization
                                 </button>

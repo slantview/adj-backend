@@ -177,7 +177,7 @@ const SitesTable = (props) => {
 	}, [sites])
 
     return (
-        <div className="mb-4 mt-4">
+        <div className="mb-4 mt-8">
             <div className="mb-6 mx-2 md:mx-0">
                 <div className="mt-1 relative rounded-md shadow-sm">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-xl">
@@ -187,7 +187,7 @@ const SitesTable = (props) => {
                         type="text"
                         name="email"
                         id="email"
-                        className="p-4 focus:ring-gray-300 focus:border-gray-300 block w-full pl-10 sm:text-sm border-gray-300 rounded-lg text-xl"
+                        className="p-4 focus:ring-gray-300 focus:border-gray-300 block w-full pl-10 sm:text-sm border-gray-300 rounded-lg text-sm"
                         placeholder="Search"
 						autoComplete="off"
 						value={search}

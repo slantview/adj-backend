@@ -233,16 +233,6 @@ const SiteView = (props) => {
                 {/* Page header */}
                 <div className="max-w-3xl mx-auto px-4 md:flex md:items-center md:justify-between  lg:max-w-7xl ">
                     <div className="flex items-center space-x-5">
-                        <div className="flex-shrink-0">
-                            <div className="relative">
-                                {/* <img
-                                className="h-16 w-16 rounded-full"
-                                src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80"
-                                alt=""
-                                />
-                                <span className="absolute inset-0 shadow-inner rounded-full" aria-hidden="true" /> */}
-                            </div>
-                        </div>
                         <div>
                             {/* @ts-ignore */}
                             <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">{siteData?.domain}</h1>
@@ -272,7 +262,7 @@ const SiteView = (props) => {
                     </div>
                 </div>
 
-                <div className="mt-8 max-w-3xl mx-auto grid grid-cols-1 gap-6 sm:px-6 lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-3">
+                <div className="mt-8 max-w-3xl mx-auto grid grid-cols-1 gap-6 sm:px-4 lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-3">
                     <div className="space-y-6 lg:col-start-1 lg:col-span-2">
                         {/* Description list*/}
                         <section aria-labelledby="applicant-information-title">

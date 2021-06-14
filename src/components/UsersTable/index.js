@@ -152,8 +152,10 @@ const UsersTable = (props) => {
             setUsersDisplayData(users);
 		} else {
 			setSearch(e.target.value);
-			const newData = users.filter(o => {
-				return o.email.toLowerCase().includes(e.target.value.toLowerCase());
+			const newData = users.filter(u => {
+				return u.email.toLowerCase().includes(e.target.value.toLowerCase()) ||
+					   u.first_name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+					   u.last_name.toLowerCase().includes(e.target.value.toLowerCase());
 			})
 			setUsersDisplayData(newData);
 		}
@@ -190,6 +192,7 @@ const UsersTable = (props) => {
                         type="text"
                         name="email"
                         id="email"
+						onChange={handleSearchChange}
                         className="p-4 focus:ring-gray-300 focus:border-gray-300 block w-full pl-10 sm:text-sm border-gray-300 rounded-lg text-sm"
                         placeholder="Search"
                     />

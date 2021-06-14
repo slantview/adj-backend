@@ -77,7 +77,7 @@ const EditOrganization = (props) => {
                     .then(() => {
                         notify({
                             type: 'success',
-                            message: "Successfully updated organization: " + updatedOrganization.email
+                            message: "Successfully updated organization: " + updatedOrganization.name
                         });
                         history.push('/organizations/view/' + updatedOrganization.id, { refresh: true });
                     });

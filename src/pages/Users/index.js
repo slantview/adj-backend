@@ -52,7 +52,7 @@ const Users = (props) => {
             <div className="max-w-3xl mt-4 mx-auto px-4 md:flex md:items-center md:justify-between lg:max-w-7xl">
                 <div className="flex items-center space-x-5 ml-0 md:ml-6">
                     <div className="min-w-0">
-                        <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate mx-2 md:mx-0">Sites</h2>
+                        <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate mx-2 md:mx-0">Users</h2>
                     </div>
                 </div>
                 <div className="lg:mr-4 mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">

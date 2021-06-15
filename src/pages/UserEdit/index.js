@@ -58,7 +58,7 @@ const EditUser = (props) => {
     const pages = [
         { name: 'Users', href: '/users', current: false },
         { name: userData?.first_name + ' ' + userData?.last_name, href: '/users/view/' + id, current: false },
-        { name: userData?.first_name + ' ' + userData?.last_name, href: '/users/edit/' + id, current: true }
+        { name: 'Edit ' + userData?.first_name + ' ' + userData?.last_name, href: '/users/edit/' + id, current: true },
     ]
     
     const initialData = {

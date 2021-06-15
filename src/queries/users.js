@@ -8,6 +8,17 @@ export const GET_ALL_USERS = gql`
             last_name
             email
             admin
+            sites {
+                id
+                name
+                domain
+            }
+            organizations {
+                id
+                name
+                city
+                state
+            }
             created_at
             updated_at
             suspended_at
@@ -23,6 +34,17 @@ export const GET_USER = gql`
             last_name
             email
             admin
+            sites {
+                id
+                name
+                domain
+            }
+            organizations {
+                id
+                name
+                city
+                state
+            }
             created_at
             updated_at
             suspended_at

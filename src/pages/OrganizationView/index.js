@@ -159,7 +159,7 @@ const OrganizationView = (props) => {
             <main className="py-6">
                 {/* Page header */}
                 <div className="max-w-3xl md:mx-auto px-4 md:flex md:items-center md:justify-between lg:max-w-7xl ">
-                    <div className="flex items-center space-x-5">
+                    <div className="px-4 flex items-center w-full">
                         <div>
                             {/* @ts-ignore */}
                             <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">{organizationData.name}</h1>
@@ -186,11 +186,11 @@ const OrganizationView = (props) => {
                 <div className="mt-8 max-w-3xl mx-auto grid grid-cols-1 gap-6 sm:px-6 lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-3">
                     <div className="space-y-6 lg:col-start-1 lg:col-span-2">
                         {/* Description list*/}
-                        <section aria-labelledby="applicant-information-title">
+                        <section aria-labelledby="information-title">
                             <div className="bg-white shadow sm:rounded-lg">
                                 <div className="px-4 py-6 md:pl-6 md:flex">
                                     <div className="md:mt-1 md:flex md:flex-grow-0">
-                                        <h2 id="applicant-information-title" className="text-lg leading-6 font-medium text-gray-900">
+                                        <h2 id="information-title" className="text-lg leading-6 font-medium text-gray-900">
                                             Organization Details
                                         </h2>
                                     </div>
@@ -211,16 +211,23 @@ const OrganizationView = (props) => {
                                         <div className="sm:col-span-1">
                                             <dt className="text-sm font-medium text-gray-500">Email Address</dt>
                                             {/* @ts-ignore */}
-                                            <dd className="mt-1 text-sm text-gray-900">{organizationData.email}</dd>
+                                            <dd className="mt-1 text-sm text-gray-900">{organizationData?.email}</dd>
                                         </div>
-                                        {/* <div className="sm:col-span-1">
-                                            <dt className="text-sm font-medium text-gray-500">Salary expectation</dt>
-                                            <dd className="mt-1 text-sm text-gray-900">$120,000</dd>
+                                        <div className="sm:col-span-1">
+                                            <dt className="text-sm font-medium text-gray-500">Mailing Address</dt>
+                                            <dd className="mt-1 text-sm text-gray-900">
+                                                {/* @ts-ignore */}
+                                                <div>{organizationData?.address_line_1} {organizationData?.address_line_2 ? organizationData.address_line_2 : null}</div>
+                                                {/* @ts-ignore */}
+                                                <div>{organizationData?.city}, {organizationData?.state}</div>
+                                                {/* @ts-ignore */}
+                                                <div>{organizationData?.country}</div>
+                                            </dd>
                                         </div>
                                         <div className="sm:col-span-1">
                                             <dt className="text-sm font-medium text-gray-500">Phone</dt>
-                                            <dd className="mt-1 text-sm text-gray-900">+1 555-555-5555</dd>
-                                        </div> */}
+                                            <dd className="mt-1 text-sm text-gray-900">&nbsp;</dd>
+                                        </div>
                                         <div className="sm:col-span-2">
                                             <dt className="text-sm font-medium text-gray-500">About</dt>
                                             <dd className="mt-1 text-sm text-gray-900">

@@ -1,19 +1,18 @@
-import { useMutation, useQuery } from '@apollo/client'
-import { Menu, Popover, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, UserCircleIcon, XIcon } from '@heroicons/react/outline'
-import { ArrowNarrowLeftIcon, CheckIcon, CogIcon, HomeIcon, PaperClipIcon, QuestionMarkCircleIcon, SearchIcon, ThumbUpIcon, UserIcon } from '@heroicons/react/solid'
+import { useQuery } from '@apollo/client';
+import { UserIcon } from '@heroicons/react/solid';
 import _ from 'lodash';
 import { DateTime } from "luxon";
-import React, { Fragment, useContext, useEffect, useState } from 'react'
-import { Link, useHistory, useParams } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 
-import Breadcrumbs from 'components/Breadcrumbs'
-import Loading from 'components/Loading'
-import SocialIcons from 'components/SocialIcons'
-import Timeline from 'components/Timeline'
-import UserCardList from 'components/UI/UserCardList'
+import Breadcrumbs from 'components/Breadcrumbs';
+import Loading from 'components/Loading';
+import SocialIcons from 'components/SocialIcons';
+import OrganizationCardList from 'components/UI/OrganizationCardList';
+import SiteCardList from 'components/UI/SiteCardList';
 import { NotificationContext } from 'providers/NotificationProvider';
 import { GET_USER } from 'queries/users';
+import Timeline from 'components/Timeline';
 
 const eventTypes = {
   created_user: { url_prefix: '/users/view', icon: UserIcon, bgColorClass: 'bg-green-500' },
@@ -175,14 +174,28 @@ const UserView = (props) => {
                                                 </span>
                                             </dd>
                                         </div>
-                                        {/* Team member list */}
-                                        <div className="mt-8 sm:col-span-2">
-                                            <h2 className="text-sm font-medium text-gray-500">User Owners</h2>
-                                            <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                                {/* @ts-ignore */}
-                                                <UserCardList users={userData?.owners} />
+                                        
+                                        {/* @ts-ignore */}
+                                        { userData?.organizations?.length > 0 &&
+                                            <div className="sm:col-span-2 mt-4">
+                                                <h2 className="text-md font-medium text-gray-500">Organizations</h2>
+                                                <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                                    {/* @ts-ignore */}
+                                                    <OrganizationCardList organizations={userData?.organizations ?? []} />
+                                                </div>
                                             </div>
-                                        </div>
+                                        }
+
+                                        {/* @ts-ignore */}
+                                        { userData?.sites?.length > 0 &&
+                                            <div className="sm:col-span-2">
+                                                <h2 className="text-md font-medium text-gray-500">Sites</h2>
+                                                <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                                    {/* @ts-ignore */}
+                                                    <SiteCardList sites={userData?.sites ?? []} />
+                                                </div>
+                                            </div>
+                                        }
                                         <div className="sm:col-span-2">
                                         
                                         </div>
@@ -192,7 +205,7 @@ const UserView = (props) => {
                         </section>
                      </div>
 
-                    <section aria-labelledby="timeline-title" className="lg:col-start-3 lg:col-span-1">
+                     <section aria-labelledby="timeline-title" className="lg:col-start-3 lg:col-span-1">
                         <Timeline items={timeline} />
                     </section>
                 </div>

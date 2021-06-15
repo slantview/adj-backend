@@ -1,12 +1,12 @@
+import { useQuery } from '@apollo/client';
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 
 import Breadcrumbs from 'components/Breadcrumbs';
+import Loading from 'components/Loading';
 import UsersTable from 'components/UsersTable';
 import Content from 'layout/Content';
 import { GET_ALL_USERS } from 'queries/users';
-import Loading from 'components/Loading';
-import { useQuery } from '@apollo/client';
 
 const pages = [
     { name: 'Users', href: '/sites', current: true },

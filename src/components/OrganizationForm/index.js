@@ -41,7 +41,7 @@ const OrganizationForm = (props) => {
 	const [organization, setOrganization] = useState(initialValues);
 	const [createOrganization] = useMutation(CREATE_ORGANIZATION);
 	const [loading, setLoading] = useState(handleSubmit ? true : false);
-	// console.log(organization);
+	
 	useEffect(() => {
 		let active = true;
 		if (active) {
@@ -74,8 +74,6 @@ const OrganizationForm = (props) => {
 	}
 
 	const handleSubmitAdd = (values, actions) => {
-		console.log('values', values);
-
 		const newOrganization = {
             name: values.name,
 			about: values.about,

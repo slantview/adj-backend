@@ -10,7 +10,7 @@ const Breadcrumbs = (props) => {
 	return (
 		<nav className="w-full" aria-label="Breadcrumb">
 			<ol className="bg-white shadow px-6 flex space-x-4">
-				<li className="flex">
+				<li key="home" className="flex">
 					<div className="flex items-center">
 						<Link to="/" className="text-gray-400 hover:text-gray-500">
 							<HomeIcon className="flex-shrink-0 h-5 w-5" aria-hidden="true" />

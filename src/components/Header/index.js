@@ -7,8 +7,6 @@ import MobileMenu from 'components/MobileMenu';
 import Navigation from 'components/Navigation';
 import ProfileBox from 'components/ProfileBox';
 
-const profile = ['Your Profile', 'Settings', 'Sign out']
-
 const Header = () => {
     const ref = useRef(null)
     return (

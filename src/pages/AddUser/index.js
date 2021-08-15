@@ -1,14 +1,14 @@
-import UserForm from 'components/UserForm';
+import { useApolloClient, useMutation } from '@apollo/client';
+import { Form, Formik } from 'formik';
 import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import * as Yup from 'yup';
 
 import Breadcrumbs from 'components/Breadcrumbs';
+import UserForm from 'components/UserForm';
 import Content from 'layout/Content';
-import { Form, Formik } from 'formik';
 import { NotificationContext } from 'providers/NotificationProvider';
-import { useHistory } from 'react-router-dom';
-import { useApolloClient, useMutation } from '@apollo/client';
 import { CREATE_USER } from 'queries/users';
-import * as Yup from 'yup';
 
 const pages = [
     { name: 'Users', href: '/organizations', current: false },
@@ -19,7 +19,9 @@ const initialData = {
     first_name: '',
     last_name: '',
     email: '',
-    admin: false
+    admin: false,
+    password1: '',
+    password2: ''
 }
 
 
@@ -55,6 +57,7 @@ const AddUser = (props) => {
     const client = useApolloClient();
     const [createUser] = useMutation(CREATE_USER);
     const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleSubmit = (values, actions) => {
         
@@ -79,7 +82,12 @@ const AddUser = (props) => {
                     });
             })
             .catch(e => {
-                console.error(e);
+                setError(e);
+                notify({
+                    type: 'danger',
+                    message: "Error adding user: " + e
+                });
+                actions.resetForm();
             })
     };
     

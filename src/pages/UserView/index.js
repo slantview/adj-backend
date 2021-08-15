@@ -8,11 +8,11 @@ import { useHistory, useParams } from 'react-router-dom';
 import Breadcrumbs from 'components/Breadcrumbs';
 import Loading from 'components/Loading';
 import SocialIcons from 'components/SocialIcons';
+import Timeline from 'components/Timeline';
 import OrganizationCardList from 'components/UI/OrganizationCardList';
 import SiteCardList from 'components/UI/SiteCardList';
 import { NotificationContext } from 'providers/NotificationProvider';
 import { GET_USER } from 'queries/users';
-import Timeline from 'components/Timeline';
 
 const eventTypes = {
   created_user: { url_prefix: '/users/view', icon: UserIcon, bgColorClass: 'bg-green-500' },
